@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+{% block title %}Questions{% endblock title %}
+{% block content %}
+    {% for question in question_list %}
+    <div class="mb-4">
+        <h5 class="mb-2">Question {{ question.id }}:</h5>
+        <div class="mb-1 text-body-secondary">
+            {{ question.created_at }}, <i>by {{ question.author }}</i>
+        </div>
+        <p class="card-text mb-2">{{ question.text }}</p>
+        <a href="{% url 'question_detail' question.id %}">Details</a>
+    </div>
+    {% endfor %}
+{% endblock content %}

@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <title>Ask :: {% block title %}Ask{% endblock title %}</title>
@@ -18,7 +18,7 @@
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li><a href="{% url 'home' %}" class="nav-link px-2">Home</a></li>
-            <li><a href="#" class="nav-link px-2">Queries</a></li>
+            <li><a href="{% url 'question_list' %}" class="nav-link px-2">Questions</a></li>
             <li><a href="#" class="nav-link px-2">Answers</a></li>
             <li><a href="#" class="nav-link px-2">FAQs</a></li>
             <li><a href="#" class="nav-link px-2">About</a></li>
