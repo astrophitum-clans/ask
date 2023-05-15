@@ -1,0 +1,18 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Answer the Question {{ question.id }}{% endblock title %}
+{% block content %}
+<div>
+    <h2 class="mb-1">Question {{ question.id }}</h2>
+    <p class="text-body-secondary">{{ question.created_at }}, <i>by {{ question.author }}</i></p>
+    <p>{{ question.text }}</p>
+    <hr>
+    <h3>Your answer:</h3>
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-success mt-2" type="submit">Answer</button>
+    </form>
+</div>
+{% endblock content %}

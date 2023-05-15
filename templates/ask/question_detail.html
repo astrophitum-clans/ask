@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+
 {% block title %}Question {{ question.id }}{% endblock title %}
 {% block content %}
 <div>
@@ -8,14 +9,18 @@
     <hr>
     <div class="mx-2">
         <h4>Answers:</h4>
-        {% for answer in question.answers.all %}
-        <div class="mt-4">
-            <div class="mb-1 text-body-secondary">
-                {{ answer.created_at }}, <i>by {{ answer.author }}</i>
+        {% if not question.answers.all %}
+            <p class="text-secondary">There is no answer to this question yet</p>
+        {% else %}
+            {% for answer in question.answers.all %}
+            <div class="mt-4">
+                <div class="mb-1 text-body-secondary">
+                    {{ answer.created_at }}, <i>by {{ answer.author }}</i>
+                </div>
+                <p class="card-text mb-2">{{ answer.text }}</p>
             </div>
-            <p class="card-text mb-2">{{ answer.text }}</p>
-        </div>
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
     </div>
 </div>
 {% endblock content %}
