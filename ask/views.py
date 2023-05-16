@@ -52,3 +52,11 @@ class AnswerToQuestionView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+
+class AnswerListView(LoginRequiredMixin, ListView):
+    model = Question
+    context_object_name = 'answer_list'
+    template_name = 'ask/answer_list.html'
+
+    def get_queryset(self):
+        return Answer.objects.filter(author=self.request.user)

@@ -7,7 +7,7 @@
     <p class="text-body-secondary">{{ question.created_at }}, <i>by {{ question.author }}</i></p>
     <p>{{ question.text }}</p>
     <hr>
-    <div class="mx-2">
+    <div>
         <h4>Answers:</h4>
         {% if not question.answers.all %}
             <p class="text-secondary">There is no answer to this question yet</p>
