@@ -3,17 +3,17 @@
 {% block content %}
     {% for answer in answer_list %}
     <div class="mb-4">
+        <h5 class="mb-0">Question:</h5>
+        <div class="mb-1 text-body-secondary">
+            {{ answer.question.created_at }}, <i>by {{ answer.question.author }}</i>
+        </div>
+        <p class="card-text mb-2">{{ answer.question.text }}</p>
+{#        <a href="{% url 'question_detail' pk=question.id %}">Details</a>#}
         <h5 class="mb-0">My answer:</h5>
         <div class="mb-1 text-body-secondary">
             {{ answer.created_at }}, <i>by {{ answer.author }}</i>
         </div>
         <p class="card-text mb-2">{{ answer.text }}</p>
-{#        <a href="{% url 'question_detail' pk=question.id %}">Details</a>#}
-        <h5 class="mb-0">to question:</h5>
-        <div class="mb-1 text-body-secondary">
-            {{ answer.question.created_at }}, <i>by {{ answer.question.author }}</i>
-        </div>
-        <p class="card-text mb-2">{{ answer.question.text }}</p>
 {#        <a href="{% url 'question_detail' pk=question.id %}">Details</a>#}
     </div>
     {% endfor %}

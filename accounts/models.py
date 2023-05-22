@@ -6,4 +6,4 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     """Extended User class"""
-    pass
+    last_answer = models.DateTimeField(null=True, blank=True, default=None)
