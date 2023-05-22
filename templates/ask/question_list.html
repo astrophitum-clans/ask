@@ -5,12 +5,12 @@
     <div class="mb-4">
         <h5 class="mb-0">Question {{ question.id }}:</h5>
         <div class="mb-1 text-body-secondary">
-            {{ question.created_at }}, <i>by {{ question.author }}</i>
+            <small>{{ question.created_at }}, <i>by {{ question.author }}</i></small>
         </div>
-        <p class="card-text mb-2">{{ question.text }}</p>
-        <a href="{% url 'question_detail' pk=question.id %}">Details</a>
+        <p class="mb-2">{{ question.text }}</p>
+        <a class="text-decoration-none" href="{% url 'question_detail' pk=question.id %}">Details</a>
         {% if question.author != user %}
-        <a href="{% url 'answer_to_question' pk=question.id %}" class="text-success mx-2">Answer</a>
+        <a class="text-decoration-none text-success mx-2" href="{% url 'answer_to_question' pk=question.id %}">Answer</a>
         {% endif %}
     </div>
     {% endfor %}

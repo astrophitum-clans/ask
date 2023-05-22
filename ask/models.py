@@ -31,8 +31,8 @@ class Answer(models.Model):
     is_active = models.BooleanField(default=True, db_index=True)
     is_deleted = models.BooleanField(default=False, db_index=True)
 
-    def __str__(self):
-        return self.text
-
     class Meta:
         ordering = ['-created_at']
+
+    def __str__(self):
+        return self.text

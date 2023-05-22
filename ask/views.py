@@ -19,14 +19,16 @@ def get_random_question(request):
 
 
 class LastAnswerCheckMixin:
-    """Mixin that redirects to an answer if the last answer was earlier LAST_ANSWER_TIMEDELTA"""
+    """Mixin: redirect to an answer if current user`s last answer was earlier LAST_ANSWER_TIMEDELTA"""
+
+    # ToDo: add next to redirect
 
     def get(self, request, *args, **kwargs):
 
         LAST_ANSWER_TIMEDELTA = timedelta(minutes=1)
 
         if get_random_question(request) is not None and (
-                not request.user.last_answer
+                not request.user.last_answer  # is None - first time show it
                 or datetime.now() - request.user.last_answer.replace(tzinfo=None) > LAST_ANSWER_TIMEDELTA
         ):
             return redirect(reverse_lazy('answer_to_question', kwargs={'pk': get_random_question(request).id}))
@@ -35,21 +37,25 @@ class LastAnswerCheckMixin:
 
 
 class HomePageView(LoginRequiredMixin, LastAnswerCheckMixin, TemplateView):
+    """Home page view"""
     template_name = 'home.html'
 
 
 class QuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
+    """Questions list view"""
     model = Question
     context_object_name = 'question_list'
     template_name = 'ask/question_list.html'
 
 
 class QuestionDetailView(LoginRequiredMixin, LastAnswerCheckMixin, DetailView):
+    """Question detail vies"""
     model = Question
     template_name = 'ask/question_detail.html'
 
 
 class QuestionCreateView(LoginRequiredMixin, LastAnswerCheckMixin, CreateView):
+    """Create question view"""
     model = Question
     template_name = 'ask/question_create.html'
     fields = ['text']
@@ -61,12 +67,14 @@ class QuestionCreateView(LoginRequiredMixin, LastAnswerCheckMixin, CreateView):
 
 
 class AnswerToQuestionView(LoginRequiredMixin, CreateView):
+    """Answer to question view"""
     model = Answer
     template_name = 'ask/question_answer.html'
     fields = ['text']
     success_url = reverse_lazy('question_list')
 
     def get_context_data(self, **kwargs):
+        """Add question to context"""
         print(kwargs)
         context = super().get_context_data(**kwargs)
         context['question'] = get_object_or_404(Question, pk=self.kwargs['pk'])
@@ -82,6 +90,7 @@ class AnswerToQuestionView(LoginRequiredMixin, CreateView):
 
 
 class AnswerListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
+    """Current user answers view"""
     model = Question
     context_object_name = 'answer_list'
     template_name = 'ask/answer_list.html'
