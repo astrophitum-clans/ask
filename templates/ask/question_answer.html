@@ -3,6 +3,7 @@
 
 {% block title %}Answer the Question {{ question.id }}{% endblock title %}
 {% block content %}
+ <a href="{% url 'question_create' %}" class="btn btn-success mb-4">Ask Question</a>
 <div>
     <h2 class="mb-1">Question {{ question.id }}</h2>
     <p class="text-body-secondary">{{ question.created_at }}, <i>by {{ question.author }}</i></p>

@@ -25,11 +25,12 @@ class LastAnswerCheckMixin:
 
     def get(self, request, *args, **kwargs):
 
-        LAST_ANSWER_TIMEDELTA = timedelta(minutes=1)
+        LAST_ANSWER_TIMEDELTA = 30  # minutes
 
         if get_random_question(request) is not None and (
                 not request.user.last_answer  # is None - first time show it
-                or datetime.now() - request.user.last_answer.replace(tzinfo=None) > LAST_ANSWER_TIMEDELTA
+                or datetime.now() - request.user.last_answer.replace(tzinfo=None) >
+                timedelta(minutes=LAST_ANSWER_TIMEDELTA)
         ):
             return redirect(reverse_lazy('answer_to_question', kwargs={'pk': get_random_question(request).id}))
         else:
@@ -39,6 +40,11 @@ class LastAnswerCheckMixin:
 class HomePageView(LoginRequiredMixin, LastAnswerCheckMixin, TemplateView):
     """Home page view"""
     template_name = 'home.html'
+
+
+class FaqPageView(LoginRequiredMixin, LastAnswerCheckMixin, TemplateView):
+    """FAQ page view"""
+    template_name = 'ask/faq.html'
 
 
 class QuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):

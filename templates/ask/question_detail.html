@@ -2,25 +2,26 @@
 
 {% block title %}Question {{ question.id }}{% endblock title %}
 {% block content %}
-<div>
-    <h2 class="mb-1">Question {{ question.id }}</h2>
-    <p class="text-body-secondary">{{ question.created_at }}, <i>by {{ question.author }}</i></p>
-    <p>{{ question.text }}</p>
-    <hr>
+    <a href="{% url 'question_create' %}" class="btn btn-success mb-4">Ask Question</a>
     <div>
-        <h4>Answers:</h4>
-        {% if not question.answers.all %}
-            <p class="text-secondary">There is no answer to this question yet</p>
-        {% else %}
-            {% for answer in question.answers.all %}
-            <div class="mt-4">
-                <div class="mb-1 text-body-secondary">
-                    {{ answer.created_at }}, <i>by {{ answer.author }}</i>
+        <h5 class="mb-0 text-primary">Question {{ question.id }}</h5>
+        <small class="text-body-secondary">{{ question.created_at }}, <i>by {{ question.author }}</i></small>
+        <p class="mt-1">{{ question.text }}</p>
+        <hr>
+        <div>
+            <h5 class="mb-2 text-primary">Answers:</h5>
+            {% if not question.answers.all %}
+                <p class="text-secondary">There is no answer to this question yet</p>
+            {% else %}
+                {% for answer in question.answers.all %}
+                <div class="mb-4">
+                    <small class="mb-1 text-body-secondary">
+                        {{ answer.created_at }}, <i>by {{ answer.author }}</i>
+                    </small>
+                    <p class="card-text mb-2">{{ answer.text }}</p>
                 </div>
-                <p class="card-text mb-2">{{ answer.text }}</p>
-            </div>
-            {% endfor %}
-        {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
     </div>
-</div>
 {% endblock content %}

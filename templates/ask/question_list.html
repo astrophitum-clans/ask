@@ -1,13 +1,14 @@
 {% extends '_base.html' %}
 {% block title %}Questions{% endblock title %}
 {% block content %}
+    <a href="{% url 'question_create' %}" class="btn btn-success mb-4">Ask Question</a>
     {% for question in question_list %}
     <div class="mb-4">
-        <h5 class="mb-0">Question {{ question.id }}:</h5>
-        <div class="mb-1 text-body-secondary">
-            <small>{{ question.created_at }}, <i>by {{ question.author }}</i></small>
-        </div>
-        <p class="mb-2">{{ question.text }}</p>
+        <h5 class="mb-0 text-primary">Question {{ question.id }}:</h5>
+        <small class="text-body-secondary">
+            {{ question.created_at }}, <i>by {{ question.author }}</i>
+        </small>
+        <p class="mb-2 mt-1">{{ question.text }}</p>
         <a class="text-decoration-none" href="{% url 'question_detail' pk=question.id %}">Details</a>
         {% if question.author != user %}
         <a class="text-decoration-none text-success mx-2" href="{% url 'answer_to_question' pk=question.id %}">Answer</a>

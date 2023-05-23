@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <title>Ask Me :: {% block title %}Ask{% endblock title %}</title>
@@ -20,7 +20,7 @@
             <li><a href="{% url 'home' %}" class="nav-link px-2">Home</a></li>
             <li><a href="{% url 'question_list' %}" class="nav-link px-2">Questions</a></li>
             <li><a href="{% url 'answer_list' %}" class="nav-link px-2">Answers</a></li>
-            <li><a href="#" class="nav-link px-2">FAQs</a></li>
+            <li><a href="{% url 'faq' %}" class="nav-link px-2">FAQs</a></li>
             <li><a href="#" class="nav-link px-2">About</a></li>
         </ul>
 
@@ -39,7 +39,6 @@
     <div class="b-example-divider"></div>
 
     <div class="container">
-        <a href="{% url 'question_create' %}" class="btn btn-success mb-4">Ask Question</a>
         {% block content %}
         {% endblock content %}
     </div>
