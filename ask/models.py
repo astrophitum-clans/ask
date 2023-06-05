@@ -13,6 +13,8 @@ class Question(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True, db_index=True)
     is_deleted = models.BooleanField(default=False, db_index=True)
+    likes = models.ManyToManyField(get_user_model(), related_name='question_likes')
+    unlikes = models.ManyToManyField(get_user_model(), related_name='question_unlikes')
 
     class Meta:
         ordering = ['-created_at']
@@ -30,6 +32,8 @@ class Answer(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True, db_index=True)
     is_deleted = models.BooleanField(default=False, db_index=True)
+    likes = models.ManyToManyField(get_user_model(), related_name='answer_likes')
+    unlikes = models.ManyToManyField(get_user_model(), related_name='answer_unlikes')
 
     class Meta:
         ordering = ['-created_at']

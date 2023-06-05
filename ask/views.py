@@ -11,9 +11,9 @@ from .models import Question, Answer
 
 # Create your views here.
 
-def get_random_question(request):
+def get_random_question(user):
     """Return a random question where the author is not the current user and he`s not been asked this question before"""
-    return Question.objects.exclude(author=request.user).exclude(answers__author=request.user).order_by('?').first()
+    return Question.objects.exclude(author=user).exclude(answers__author=user).order_by('?').first()
 
     # ToDo: Optimize this method
 
@@ -26,13 +26,14 @@ class LastAnswerCheckMixin:
     def get(self, request, *args, **kwargs):
 
         LAST_ANSWER_TIMEDELTA = 30  # minutes
+        random_question = get_random_question(request.user)
 
-        if get_random_question(request) is not None and (
+        if random_question and (
                 not request.user.last_answer  # is None - first time show it
                 or datetime.now() - request.user.last_answer.replace(tzinfo=None) >
                 timedelta(minutes=LAST_ANSWER_TIMEDELTA)
         ):
-            return redirect(reverse_lazy('answer_to_question', kwargs={'pk': get_random_question(request).id}))
+            return redirect(reverse_lazy('answer_to_question', kwargs={'pk': random_question.id}))
         else:
             return super().get(request, *args, **kwargs)
 
@@ -90,9 +91,12 @@ class AnswerToQuestionView(LoginRequiredMixin, CreateView):
         """Set current author, question and add answer`s datetime to current user"""
         form.instance.question = get_object_or_404(Question, pk=self.kwargs['pk'])
         form.instance.author = self.request.user
-        self.request.user.last_answer = datetime.now()
-        self.request.user.save()
+        self.update_user_last_answer_time(self.request.user)
         return super().form_valid(form)
+
+    def update_user_last_answer_time(self, user):
+        user.last_answer = datetime.now()
+        user.save()
 
 
 class AnswerListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
