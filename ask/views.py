@@ -34,8 +34,8 @@ class LastAnswerCheckMixin:
                 timedelta(minutes=LAST_ANSWER_TIMEDELTA)
         ):
             return redirect(reverse_lazy('answer_to_question', kwargs={'pk': random_question.id}))
-        else:
-            return super().get(request, *args, **kwargs)
+
+        return super().get(request, *args, **kwargs)
 
 
 class HomePageView(LoginRequiredMixin, LastAnswerCheckMixin, TemplateView):
@@ -53,6 +53,16 @@ class QuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
     model = Question
     context_object_name = 'question_list'
     template_name = 'ask/question_list.html'
+
+
+class MyQuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
+    """Only current user`s questions list view"""
+    model = Question
+    context_object_name = 'question_list'
+    template_name = 'ask/my_question_list.html'
+
+    def get_queryset(self):
+        return Question.objects.filter(author=self.request.user)
 
 
 class QuestionDetailView(LoginRequiredMixin, LastAnswerCheckMixin, DetailView):
@@ -107,3 +117,13 @@ class AnswerListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
 
     def get_queryset(self):
         return Answer.objects.filter(author=self.request.user)
+
+
+class AnswerToMyQuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
+    """Only current user`s questions list view"""
+    model = Question
+    context_object_name = 'question_list'
+    template_name = 'ask/answer_to_my_question_list.html'
+
+    def get_queryset(self):
+        return Question.objects.filter(author=self.request.user)

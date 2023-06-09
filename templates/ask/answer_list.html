@@ -2,8 +2,12 @@
 {% block title %}My Answers{% endblock title %}
 {% block content %}
     <a href="{% url 'question_create' %}" class="btn btn-success mb-4">Ask Question</a>
+        <ul class="nav justify-content-left">
+        <li><span class="nav-link px-2 text-muted">My Answers</span></li>
+        <li><a href="{% url 'answer_to_my_question_list' %}" class="nav-link px-2 ">To My Questions</a></li>
+    </ul>
     {% for answer in answer_list %}
-    <div class="mb-4">
+    <div class="mb-4 mt-3">
         <h5 class="mb-0 text-primary">Question:</h5>
         <small class="text-body-secondary">
             {{ answer.question.created_at }}, <i>by {{ answer.question.author }}</i>

@@ -3,8 +3,8 @@
 {% block content %}
     <a href="{% url 'question_create' %}" class="btn btn-success mb-4">Ask Question</a>
     <ul class="nav justify-content-left">
-        <li><span class="nav-link px-2 text-muted">All Questions</span></li>
-        <li><a href="{% url 'my_question_list' %}" class="nav-link px-2 ">My Questions</a></li>
+        <li><a href="{% url 'question_list' %}" class="nav-link px-2 ">All Questions</a></li>
+        <li><span class="nav-link px-2 text-muted">My Questions</span></li>
     </ul>
     {% for question in question_list %}
     <div class="mb-4 mt-3">
