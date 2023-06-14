@@ -14,5 +14,5 @@
     {% endfor %}
     <p class="mt-4">{% trans 'Theme Color' %}</p>
     <a href="{% url 'set_theme_color' color='light' %}" class="btn btn-primary">{% trans 'Light' %}</a>
-        <a href="{% url 'set_theme_color' color='dark' %}" class="btn btn-primary">{% trans 'Dark' %}</a>
+    <a href="{% url 'set_theme_color' color='dark' %}" class="btn btn-primary">{% trans 'Dark' %}</a>
 {% endblock content %}
