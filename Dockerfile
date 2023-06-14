@@ -1,5 +1,5 @@
 # Pull base image
-FROM python:3.11-slim-bullseye
+FROM python:3.11
 
 # Set environment variables
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
@@ -11,7 +11,9 @@ WORKDIR /code
 
 # Install dependencies
 COPY ./requirements.txt .
-RUN  pip install -r requirements.txt
+RUN pip install -r requirements.txt
+RUN apt update
+RUN apt install gettext -y
 
 # Copy project
 COPY . .

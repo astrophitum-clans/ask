@@ -1,6 +1,7 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme={% if user.light_theme %}"light"{% else %}"dark"{% endif %}>
 <head>
     <meta charset="UTF-8">
     <title>Ask Me :: {% block title %}Ask{% endblock title %}</title>
@@ -19,20 +20,20 @@
         </div>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="{% url 'home' %}" class="nav-link px-2">Home</a></li>
-            <li><a href="{% url 'question_list' %}" class="nav-link px-2">Questions</a></li>
-            <li><a href="{% url 'answer_list' %}" class="nav-link px-2">Answers</a></li>
-            <li><a href="{% url 'faq' %}" class="nav-link px-2">FAQs</a></li>
-            <li><a href="#" class="nav-link px-2">About</a></li>
+            <li><a href="{% url 'home' %}" class="nav-link px-2">{% trans 'Home' %}</a></li>
+            <li><a href="{% url 'question_list' %}" class="nav-link px-2">{% trans 'Questions' %}</a></li>
+            <li><a href="{% url 'answer_list' %}" class="nav-link px-2">{% trans 'Answers' %}</a></li>
+            <li><a href="{% url 'faq' %}" class="nav-link px-2">{% trans 'FAQs' %}</a></li>
+            <li><a href="#" class="nav-link px-2">{% trans 'About' %}</a></li>
         </ul>
 
         <div class="col-md-3 text-end">
             {% if user.is_authenticated %}
-            <a href="{% url 'account_logout' %}" class="btn btn-outline-primary me-2">Log Out</a>
-            <a href="#" class="btn btn-primary">My Profile</a>
+            <a href="{% url 'account_logout' %}" class="btn btn-outline-primary me-2">{% trans 'Log Out' %}</a>
+            <a href="{% url 'user_profile' %}" class="btn btn-primary">{% trans 'My Profile' %}</a>
             {% else %}
-            <a href="{% url 'account_login' %}" class="btn btn-outline-primary me-2">Log In</a>
-            <a href="{% url 'account_signup' %}" class="btn btn-primary">Sign Up</a>
+            <a href="{% url 'account_login' %}" class="btn btn-outline-primary me-2">{% trans 'Log In' %}</a>
+            <a href="{% url 'account_signup' %}" class="btn btn-primary">{% trans 'Sign Up' %}</a>
             {% endif %}
         </div>
     </header>

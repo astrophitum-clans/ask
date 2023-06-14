@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.i18n import i18n_patterns
+from accounts.views import UserProfileView
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
+    path('profile/', include('accounts.urls')),
     path('accounts/', include('allauth.urls')),
     path('', include('ask.urls')),
-]
+)

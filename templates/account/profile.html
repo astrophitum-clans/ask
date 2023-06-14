@@ -1,0 +1,18 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% block title %}User Profile{% endblock title %}
+
+{% block content %}
+    <h3>{%  trans 'My Profile' %}</h3>
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_available_languages as LANGUAGES %}
+    {% get_language_info_list for LANGUAGES as languages %}
+    <p class="mt-4">{% trans 'Language' %}</p>
+    {% for language in languages %}
+        <a href="/{{ language.code }}/profile" class="btn btn-danger">{{ language.name_local }}</a>
+    {% endfor %}
+    <p class="mt-4">{% trans 'Theme Color' %}</p>
+    <a href="{% url 'set_theme_color' color='light' %}" class="btn btn-primary">{% trans 'Light' %}</a>
+        <a href="{% url 'set_theme_color' color='dark' %}" class="btn btn-primary">{% trans 'Dark' %}</a>
+{% endblock content %}

@@ -1,0 +1,131 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-14 22:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ask/models.py:11 ask/models.py:22 ask/models.py:31
+msgid "question"
+msgstr ""
+
+#: ask/models.py:12 ask/models.py:33
+msgid "author"
+msgstr ""
+
+#: ask/models.py:13 ask/models.py:34
+msgid "created_at"
+msgstr ""
+
+#: ask/models.py:14 ask/models.py:35
+msgid "updated_at"
+msgstr ""
+
+#: ask/models.py:15 ask/models.py:36
+msgid "is_active"
+msgstr ""
+
+#: ask/models.py:16 ask/models.py:37
+msgid "is_deleted"
+msgstr ""
+
+#: ask/models.py:17
+msgid "likes"
+msgstr ""
+
+#: ask/models.py:18
+msgid "unlikes"
+msgstr ""
+
+#: ask/models.py:23
+msgid "questions"
+msgstr ""
+
+#: ask/models.py:32 ask/models.py:43
+msgid "answer"
+msgstr ""
+
+#: ask/models.py:38
+msgid "like"
+msgstr ""
+
+#: ask/models.py:39
+msgid "unlike"
+msgstr ""
+
+#: ask/models.py:44
+msgid "answers"
+msgstr ""
+
+#: django_project/settings.py:136
+msgid "English"
+msgstr ""
+
+#: django_project/settings.py:137
+msgid "Russian"
+msgstr ""
+
+#: templates/_base.html:23
+msgid "Home"
+msgstr ""
+
+#: templates/_base.html:24
+msgid "Questions"
+msgstr ""
+
+#: templates/_base.html:25
+msgid "Answers"
+msgstr ""
+
+#: templates/_base.html:26
+msgid "FAQs"
+msgstr ""
+
+#: templates/_base.html:27
+msgid "About"
+msgstr ""
+
+#: templates/_base.html:32
+msgid "Log Out"
+msgstr ""
+
+#: templates/_base.html:33 templates/account/profile.html:7
+msgid "My Profile"
+msgstr ""
+
+#: templates/_base.html:35
+msgid "Log In"
+msgstr ""
+
+#: templates/_base.html:36
+msgid "Sign Up"
+msgstr ""
+
+#: templates/account/profile.html:11
+msgid "Language"
+msgstr ""
+
+#: templates/account/profile.html:15
+msgid "Theme Color"
+msgstr ""
+
+#: templates/account/profile.html:16
+msgid "Light"
+msgstr ""
+
+#: templates/account/profile.html:17
+msgid "Dark"
+msgstr ""

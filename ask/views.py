@@ -25,13 +25,13 @@ class LastAnswerCheckMixin:
 
     def get(self, request, *args, **kwargs):
 
-        LAST_ANSWER_TIMEDELTA = 30  # minutes
+        LAST_ANSWER_TIMEDELTA = 3  # hours
         random_question = get_random_question(request.user)
 
         if random_question and (
                 not request.user.last_answer  # is None - first time show it
                 or datetime.now() - request.user.last_answer.replace(tzinfo=None) >
-                timedelta(minutes=LAST_ANSWER_TIMEDELTA)
+                timedelta(hours=LAST_ANSWER_TIMEDELTA)
         ):
             return redirect(reverse_lazy('answer_to_question', kwargs={'pk': random_question.id}))
 
@@ -76,7 +76,7 @@ class QuestionCreateView(LoginRequiredMixin, LastAnswerCheckMixin, CreateView):
     model = Question
     template_name = 'ask/question_create.html'
     fields = ['text']
-    success_url = reverse_lazy('question_list')
+    success_url = reverse_lazy('my_question_list')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -88,7 +88,7 @@ class AnswerToQuestionView(LoginRequiredMixin, CreateView):
     model = Answer
     template_name = 'ask/question_answer.html'
     fields = ['text']
-    success_url = reverse_lazy('question_list')
+    success_url = reverse_lazy('home')
 
     def get_context_data(self, **kwargs):
         """Add question to context"""

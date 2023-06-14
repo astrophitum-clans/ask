@@ -7,3 +7,4 @@ from django.contrib.auth.models import AbstractUser
 class CustomUser(AbstractUser):
     """Extended User class"""
     last_answer = models.DateTimeField(null=True, blank=True, default=None)
+    light_theme = models.BooleanField(null=True, blank=True, default=False)
