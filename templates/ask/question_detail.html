@@ -1,12 +1,61 @@
 {% extends '_base.html' %}
 
 {% block title %}Question {{ question.id }}{% endblock title %}
+
+{% block head %}
+    <script>
+    $( document ).ready(function() {
+        $( ".like_btn" ).click(function( event ) {
+            event.preventDefault();
+            const id = $(this).attr('id');
+            const url = $(this).attr('href');
+            const cclass = $(this).attr('class');
+            let current_btn = $(this)
+
+            {#console.log(url + ' -- id: ' + id + ' -- count: ' + likes_count_text + ', class: ' + cclass);#}
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    'id': id,
+                },
+                success: function(response) {
+                    {#console.log('success', response);#}
+                    $(`#question_likes_count_${id}`).text(response.count);
+                    if (response.status === 'like'){
+                        current_btn.removeClass('text-primary');
+                        current_btn.addClass('text-danger');
+                    }
+                    else {
+                        current_btn.removeClass('text-danger');
+                        current_btn.addClass('text-primary');
+                    }
+                },
+                error: function(response) {
+                    console.log('error');
+
+                }
+            })
+        });
+    });
+    </script>
+{% endblock %}
+
 {% block content %}
     <a href="{% url 'question_create' %}" class="btn btn-success mb-4">Ask Question</a>
     <div>
         <h5 class="mb-0 text-primary">Question {{ question.id }}</h5>
         <small class="text-body-secondary">{{ question.created_at }}, <i>by {{ question.author }}</i></small>
-        <p class="mt-1">{{ question.text }}</p>
+        <p class="mt-1 mb-2">{{ question.text }}</p>
+        <p>
+            <a href="{% url 'like_question' %}" class="like_btn text-decoration-none {% if user in question.like.all %} text-danger {% else %} text-primary {% endif %}" id="{{ question.id }}">
+                <i class="fa-solid fa-thumbs-up"></i>
+            </a>
+            <span><small id="question_likes_count_{{ question.id }}">{{ question.like.count }}</small></span>
+            <a href="/unlike/question/" class="unlike_btn" id="{{ question.id }}"><i class="fa-solid fa-thumbs-down text-primary px-2"></i></a>
+        </p>
         <hr>
         <div>
             <h5 class="mb-2 text-primary">Answers:</h5>

@@ -1,8 +1,11 @@
 import random
 from datetime import datetime, timedelta
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 from django.shortcuts import redirect, get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.urls import reverse_lazy
 
@@ -101,3 +104,30 @@ class AnswerToMyQuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListV
 
     def get_queryset(self):
         return Question.objects.filter(author=self.request.user)
+
+
+@login_required
+def like_question(request):
+    """Set/unset likes to question"""
+    if request.method == 'POST':
+        user = request.user
+        id = request.POST.get('id')
+        question = get_object_or_404(Question, pk=id)
+        if user in question.like.all():
+            question.like.remove(user)
+            status = 'dislike'
+        else:
+            question.like.add(user)
+            status = 'like'
+        question.save()
+        data = {
+            'user': request.user.username,
+            'id': request.POST.get('id'),
+            'status': status,
+            'count': question.like.count()
+        }
+        return JsonResponse(data, safe=False)
+
+
+def unlike_question(request):
+    pass
