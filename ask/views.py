@@ -107,27 +107,46 @@ class AnswerToMyQuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListV
 
 
 @login_required
-def like_question(request):
-    """Set/unset likes to question"""
+def like(request):
+    """Set/unset likes & unlikes to target"""
     if request.method == 'POST':
         user = request.user
         id = request.POST.get('id')
-        question = get_object_or_404(Question, pk=id)
-        if user in question.like.all():
-            question.like.remove(user)
-            status = 'dislike'
-        else:
-            question.like.add(user)
-            status = 'like'
-        question.save()
-        data = {
-            'user': request.user.username,
-            'id': request.POST.get('id'),
-            'status': status,
-            'count': question.like.count()
-        }
-        return JsonResponse(data, safe=False)
+        choice = request.POST.get('choice')
+        # reverse_choice = 'unlike' if choice == 'like' else choice
+        target_model = None
+        if request.POST.get('target') == 'question':
+            target_model = Question
+        elif request.POST.get('target') == 'answer':
+            target_model = Answer
 
+        if target_model and choice in 'like unlike'.split():
+            target = get_object_or_404(target_model, pk=id)
 
-def unlike_question(request):
-    pass
+            # # set reverse choice status
+            # reverse_status = 'checked' if user in getattr(target, reverse_choice).all() else 'unchecked'
+
+            # set choice to model & its status
+            if user in getattr(target, choice).all():   # ex: question.unlike.all()
+                getattr(target, choice).remove(user)
+                status = 'unchecked'
+            else:
+                getattr(target, choice).add(user)
+                status = 'checked'
+                # if user in getattr(target, reverse_choice).all():   # remove if user set both like & unlike
+                #     getattr(target, reverse_choice).remove(user)
+                #     reverse_status = 'unchecked'
+
+            target.save()
+
+            data = {
+                'user': request.user.username,
+                'id': request.POST.get('id'),
+                'status': status,
+                'target': str(target),
+                'cnt': getattr(target, choice).count(),
+                # 'reverse_status': reverse_status,
+                # 'reverse_cnt': getattr(target, reverse_choice).count(),
+            }
+
+            return JsonResponse(data, safe=False)

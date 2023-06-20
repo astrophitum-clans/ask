@@ -3,44 +3,7 @@
 {% block title %}Question {{ question.id }}{% endblock title %}
 
 {% block head %}
-    <script>
-    $( document ).ready(function() {
-        $( ".like_btn" ).click(function( event ) {
-            event.preventDefault();
-            const id = $(this).attr('id');
-            const url = $(this).attr('href');
-            const cclass = $(this).attr('class');
-            let current_btn = $(this)
-
-            {#console.log(url + ' -- id: ' + id + ' -- count: ' + likes_count_text + ', class: ' + cclass);#}
-
-            $.ajax({
-                type: 'POST',
-                url: url,
-                data: {
-                    'csrfmiddlewaretoken': '{{ csrf_token }}',
-                    'id': id,
-                },
-                success: function(response) {
-                    {#console.log('success', response);#}
-                    $(`#question_likes_count_${id}`).text(response.count);
-                    if (response.status === 'like'){
-                        current_btn.removeClass('text-primary');
-                        current_btn.addClass('text-danger');
-                    }
-                    else {
-                        current_btn.removeClass('text-danger');
-                        current_btn.addClass('text-primary');
-                    }
-                },
-                error: function(response) {
-                    console.log('error');
-
-                }
-            })
-        });
-    });
-    </script>
+    {% include 'ask/like_script.html' %}
 {% endblock %}
 
 {% block content %}
@@ -50,11 +13,14 @@
         <small class="text-body-secondary">{{ question.created_at }}, <i>by {{ question.author }}</i></small>
         <p class="mt-1 mb-2">{{ question.text }}</p>
         <p>
-            <a href="{% url 'like_question' %}" class="like_btn text-decoration-none {% if user in question.like.all %} text-danger {% else %} text-primary {% endif %}" id="{{ question.id }}">
+            <a href="{% url 'like' %}" class="like_unlike_btn like question text-decoration-none {% if user in question.like.all %} text-danger {% else %} text-primary {% endif %}" id="{{ question.id }}">
                 <i class="fa-solid fa-thumbs-up"></i>
             </a>
-            <span><small id="question_likes_count_{{ question.id }}">{{ question.like.count }}</small></span>
-            <a href="/unlike/question/" class="unlike_btn" id="{{ question.id }}"><i class="fa-solid fa-thumbs-down text-primary px-2"></i></a>
+            <span><small id="question_like_count_{{ question.id }}">{{ question.like.count }}</small></span>
+            <a style="margin-left: 6pt;" href="{% url 'like' %}" class="like_unlike_btn unlike question text-decoration-none {% if user in question.unlike.all %} text-danger {% else %} text-primary {% endif %}" id="{{ question.id }}">
+                <i class="fa-solid fa-thumbs-down"></i>
+            </a>
+            <span><small id="question_unlike_count_{{ question.id }}">{{ question.unlike.count }}</small></span>
         </p>
         <hr>
         <div>
@@ -68,6 +34,16 @@
                         {{ answer.created_at }}, <i>by {{ answer.author }}</i>
                     </small>
                     <p class="card-text mb-2">{{ answer.text }}</p>
+                    <p>
+                        <a href="{% url 'like' %}" class="like_unlike_btn like answer text-decoration-none {% if user in answer.like.all %} text-danger {% else %} text-primary {% endif %}" id="{{ answer.id }}">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                        </a>
+                        <span><small id="answer_like_count_{{ answer.id }}">{{ answer.like.count }}</small></span>
+                        <a style="margin-left: 6pt;" href="{% url 'like' %}" class="like_unlike_btn unlike answer text-decoration-none {% if user in answer.unlike.all %} text-danger {% else %} text-primary {% endif %}" id="{{ answer.id }}">
+                            <i class="fa-solid fa-thumbs-down"></i>
+                        </a>
+                        <span><small id="answer_unlike_count_{{ answer.id }}">{{ answer.unlike.count }}</small></span>
+                    </p>
                 </div>
                 {% endfor %}
             {% endif %}
