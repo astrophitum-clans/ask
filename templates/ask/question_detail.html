@@ -13,11 +13,15 @@
         <small class="text-body-secondary">{{ question.created_at }}, <i>by {{ question.author }}</i></small>
         <p class="mt-1 mb-2">{{ question.text }}</p>
         <p>
-            <a href="{% url 'like' %}" class="like_unlike_btn like question text-decoration-none {% if user in question.like.all %} text-danger {% else %} text-primary {% endif %}" id="{{ question.id }}">
+            <a href="{% url 'like' %}" class="like_unlike_btn text-decoration-none
+            {% if user in question.like.all %} text-danger
+            {% else %} text-primary {% endif %}" id="question_like_{{ question.id }}">
                 <i class="fa-solid fa-thumbs-up"></i>
             </a>
             <span><small id="question_like_count_{{ question.id }}">{{ question.like.count }}</small></span>
-            <a style="margin-left: 6pt;" href="{% url 'like' %}" class="like_unlike_btn unlike question text-decoration-none {% if user in question.unlike.all %} text-danger {% else %} text-primary {% endif %}" id="{{ question.id }}">
+            <a style="margin-left: 6pt;" href="{% url 'like' %}" class="like_unlike_btn text-decoration-none
+            {% if user in question.unlike.all %} text-danger
+            {% else %} text-primary {% endif %}" id="question_unlike_{{ question.id }}">
                 <i class="fa-solid fa-thumbs-down"></i>
             </a>
             <span><small id="question_unlike_count_{{ question.id }}">{{ question.unlike.count }}</small></span>
@@ -35,11 +39,15 @@
                     </small>
                     <p class="card-text mb-2">{{ answer.text }}</p>
                     <p>
-                        <a href="{% url 'like' %}" class="like_unlike_btn like answer text-decoration-none {% if user in answer.like.all %} text-danger {% else %} text-primary {% endif %}" id="{{ answer.id }}">
+                        <a href="{% url 'like' %}" class="like_unlike_btn text-decoration-none
+                        {% if user in answer.like.all %} text-danger
+                        {% else %} text-primary {% endif %}" id="answer_like_{{ answer.id }}">
                             <i class="fa-solid fa-thumbs-up"></i>
                         </a>
                         <span><small id="answer_like_count_{{ answer.id }}">{{ answer.like.count }}</small></span>
-                        <a style="margin-left: 6pt;" href="{% url 'like' %}" class="like_unlike_btn unlike answer text-decoration-none {% if user in answer.unlike.all %} text-danger {% else %} text-primary {% endif %}" id="{{ answer.id }}">
+                        <a style="margin-left: 6pt;" href="{% url 'like' %}" class="like_unlike_btn unlike answer text-decoration-none
+                        {% if user in answer.unlike.all %} text-danger
+                        {% else %} text-primary {% endif %}" id="answer_unlike_{{ answer.id }}">
                             <i class="fa-solid fa-thumbs-down"></i>
                         </a>
                         <span><small id="answer_unlike_count_{{ answer.id }}">{{ answer.unlike.count }}</small></span>

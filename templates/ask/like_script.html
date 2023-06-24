@@ -1,24 +1,13 @@
     <script>
     $( document ).ready(function() {
         $( ".like_unlike_btn" ).click(function( event ) {
-            let choice, target;
 
-            // Button class should contain a like pointer and a target pointer
-            // ex: class='like_unlike_btn like question'...
-
-            if ($(this).attr('class').includes(' like '))
-                choice = 'like';
-            else if ($(this).attr('class').includes(' unlike '))
-                choice = 'unlike';
-            //const reverse_choice = choice === 'like' ? 'unlike' : choice
-
-            if ($(this).attr('class').includes(' question '))
-                target = 'question';
-            else if ($(this).attr('class').includes(' answer '))
-                target = 'answer';
-
+            // Button id should contain like pointer, target pointer & target id
             event.preventDefault();
-            const id = $(this).attr('id');
+            const id_tag_array = $(this).attr('id').split('_');
+            const target = id_tag_array[0];
+            const choice = id_tag_array[1];
+            const id = id_tag_array[2];
             const url = $(this).attr('href');
             let current_btn = $(this);
 
