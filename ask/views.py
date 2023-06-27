@@ -113,40 +113,41 @@ def like(request):
         user = request.user
         id = request.POST.get('id')
         choice = request.POST.get('choice')
-        # reverse_choice = 'unlike' if choice == 'like' else choice
-        target_model = None
-        if request.POST.get('target') == 'question':
-            target_model = Question
-        elif request.POST.get('target') == 'answer':
-            target_model = Answer
+        reversed_choice = 'unlike' if choice == 'like' else 'like'
+        match request.POST.get('target'):
+            case 'question':
+                target_model = Question
+            case 'answer':
+                target_model = Answer
+            case _:
+                target_model = None
 
         if target_model and choice in 'like unlike'.split():
             target = get_object_or_404(target_model, pk=id)
 
             # # set reverse choice status
-            # reverse_status = 'checked' if user in getattr(target, reverse_choice).all() else 'unchecked'
+            reversed_status = 'checked' if user in getattr(target, reversed_choice).all() else 'unchecked'
 
             # set choice to model & its status
-            if user in getattr(target, choice).all():   # ex: question.unlike.all()
+            if user in getattr(target, choice).all():   # ex: question.like.all()
                 getattr(target, choice).remove(user)
                 status = 'unchecked'
             else:
                 getattr(target, choice).add(user)
                 status = 'checked'
-                # if user in getattr(target, reverse_choice).all():   # remove if user set both like & unlike
-                #     getattr(target, reverse_choice).remove(user)
-                #     reverse_status = 'unchecked'
+                if reversed_status == 'checked':   # remove if user set both like & unlike
+                    getattr(target, reversed_choice).remove(user)
+                    reversed_status = 'unchecked'
 
             target.save()
 
             data = {
-                'user': request.user.username,
                 'id': request.POST.get('id'),
                 'status': status,
                 'target': str(target),
                 'cnt': getattr(target, choice).count(),
-                # 'reverse_status': reverse_status,
-                # 'reverse_cnt': getattr(target, reverse_choice).count(),
+                'reversed_status': reversed_status,
+                'reversed_cnt': getattr(target, reversed_choice).count(),
             }
 
             return JsonResponse(data, safe=False)
