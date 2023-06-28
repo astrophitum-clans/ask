@@ -36,7 +36,7 @@
         <div class="col-md-3 text-end">
             {% if user.is_authenticated %}
             <a href="{% url 'account_logout' %}" class="btn btn-outline-primary me-2">{% trans 'Log Out' %}</a>
-            <a href="{% url 'user_profile' %}" class="btn btn-primary">{% trans 'My Profile' %}</a>
+            <a href="{% url 'user_profile' %}" class="btn btn-primary">{% trans 'Profile' %}</a>
             {% else %}
             <a href="{% url 'account_login' %}" class="btn btn-outline-primary me-2">{% trans 'Log In' %}</a>
             <a href="{% url 'account_signup' %}" class="btn btn-primary">{% trans 'Sign Up' %}</a>

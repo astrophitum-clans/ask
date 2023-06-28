@@ -1,7 +1,11 @@
 {% extends '_base.html' %}
-{% block title %}Home{% endblock title %}
+{% load i18n %}
+{% block title %}{% trans 'Home' %}{% endblock title %}
 {% block content %}
-    <a href="{% url 'question_create' %}" class="btn btn-success mb-4">Ask Question</a>
-    <h4>Let`s start ask application here!</h4>
+    <a href="{% url 'question_create' %}" class="btn btn-success mb-4">{% trans 'Ask Question' %}</a>
+    <h5 class="text-primary">{% trans 'Last Questions' %}</h5>
+    <h5 class="text-primary">{% trans 'Last Answers' %}</h5>
+    <h5 class="text-primary">{% trans 'Top Questions' %}</h5>
+    <h5 class="text-primary">{% trans 'Top Answers' %}</h5>
     <p>Created by Michail Kuznetsov</p>
 {% endblock content %}

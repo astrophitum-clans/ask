@@ -1,24 +1,14 @@
 {% extends '_base.html' %}
-{% block title %}Questions{% endblock title %}
+{% load i18n %}
+{% block title %}{% trans 'My Questions' %}{% endblock title %}
+{% block head %}
+    {% include 'ask/_like_script.html' %}
+{% endblock %}
 {% block content %}
-    <a href="{% url 'question_create' %}" class="btn btn-success mb-4">Ask Question</a>
+    <a href="{% url 'question_create' %}" class="btn btn-success mb-4">{% trans 'Ask Question' %}</a>
     <ul class="nav justify-content-left">
-        <li><a href="{% url 'question_list' %}" class="nav-link px-2 ">All Questions</a></li>
-        <li><span class="nav-link px-2 text-muted">My Questions</span></li>
+        <li><a href="{% url 'question_list' %}" class="nav-link px-2 ">{% trans 'All Questions' %}</a></li>
+        <li><span class="nav-link px-2 text-danger">{% trans 'My Questions' %}</span></li>
     </ul>
-    {% for question in question_list %}
-    <div class="mb-4 mt-3">
-        <h5 class="mb-0 {% if question.author == user %} text-success {% else %} text-primary {% endif %}">
-            Question {{ question.id }}:
-        </h5>
-        <small class="text-body-secondary">
-            {{ question.created_at }}, <i>by {{ question.author }}</i>
-        </small>
-        <p class="mb-2 mt-1">{{ question.text }}</p>
-        <a class="text-decoration-none" href="{% url 'question_detail' pk=question.id %}">Details</a>
-        {% if question.author != user %}
-        <a class="text-decoration-none text-success mx-2" href="{% url 'answer_to_question' pk=question.id %}">Answer</a>
-        {% endif %}
-    </div>
-    {% endfor %}
+    {% include 'ask/_question_list.html' %}
 {% endblock content %}

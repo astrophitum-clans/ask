@@ -1,0 +1,32 @@
+{% load i18n %}
+<div class="col-md-8 col-lg-6">
+{% for question in question_list %}
+    <div class="mb-4 mt-3 ">
+        <small class="text-body-secondary">
+            {{ question.created_at }}, {% trans 'by' %} {{ question.author }}:
+        </small>
+        <h6 class="mb-3 mt-1 ">
+{#          {% if question.author == user %} text-success {% else %} text-primary {% endif %}#}
+            {{ question.text }}
+        </h6>
+        <p class="mb-2">
+            <a href="{% url 'like' %}" class="like_unlike_btn text-decoration-none
+            {% if user in question.like.all %} text-danger
+            {% else %} text-primary {% endif %}" id="question_like_{{ question.id }}">
+            <i class="fa-solid fa-thumbs-up"></i>
+            </a>
+            <span><small id="question_like_count_{{ question.id }}">{{ question.like.count }}</small></span>
+            <a style="margin-left: 6pt;" href="{% url 'like' %}" class="like_unlike_btn text-decoration-none
+            {% if user in question.unlike.all %} text-danger
+            {% else %} text-primary {% endif %}" id="question_unlike_{{ question.id }}">
+            <i class="fa-solid fa-thumbs-down"></i>
+            </a>
+            <span><small id="question_unlike_count_{{ question.id }}">{{ question.unlike.count }}</small></span>
+        </p>
+        <a class="text-decoration-none" href="{% url 'question_detail' pk=question.id %}">{% trans 'Details' %}</a>
+        {% if question.author != user %}
+        <a class="text-decoration-none text-success mx-2" href="{% url 'answer_to_question' pk=question.id %}">{% trans 'Answer' %}</a>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>

@@ -15,8 +15,6 @@
             let current_btn = $(this);
             let reversed_btn = $(`#${target}_${reversed_choice}_${id}`)
 
-            console.log(url + ' -- id: ' + id + ' choice: ' + choice + ' target: ' + target + ' r_choice: ' + reversed_choice);
-
             $.ajax({
                 type: 'POST',
                 url: url,
@@ -27,7 +25,6 @@
                     'choice': choice,
                 },
                 success: function(response) {
-                    console.log('success', response);
                     $(`#${target}_${choice}_count_${id}`).text(response.cnt);
                     $(`#${target}_${reversed_choice}_count_${id}`).text(response.reversed_cnt);
                     if (response.status === 'checked'){

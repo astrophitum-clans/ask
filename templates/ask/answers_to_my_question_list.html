@@ -1,14 +1,14 @@
 {% extends '_base.html' %}
 {% load i18n %}
-{% block title %}{% trans 'Questions' %}{% endblock title %}
+{% block title %}{% trans 'Answers To My Questions' %}{% endblock title %}
 {% block head %}
     {% include 'ask/_like_script.html' %}
 {% endblock %}
 {% block content %}
     <a href="{% url 'question_create' %}" class="btn btn-success mb-4">{% trans 'Ask Question' %}</a>
     <ul class="nav justify-content-left">
-        <li><span class="nav-link px-2 text-danger">{% trans 'All Questions' %}</span></li>
-        <li><a href="{% url 'my_question_list' %}" class="nav-link px-2 ">{% trans 'My Questions' %}</a></li>
+        <li><a href="{% url 'answer_list' %}" class="nav-link px-2 ">{% trans 'My Answers' %}</a></li>
+        <li><span class="nav-link px-2 text-danger">{% trans 'To My Questions' %}</span></li>
     </ul>
     {% include 'ask/_question_list.html' %}
 {% endblock content %}

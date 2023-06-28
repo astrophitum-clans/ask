@@ -1,13 +1,14 @@
 {% extends '_base.html' %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 
-{% block title %}Ask question{% endblock title %}
+{% block title %}{% trans 'Ask Question' %}{% endblock title %}
 
 {% block content %}
-    <h3>Ask question</h3>
+    <h5 class="text-primary">{% trans 'Ask question' %}</h5>
     <form method="post" class="mt-4">
         {% csrf_token %}
         {{ form|crispy }}
-        <button class="btn btn-success mt-2" type="submit">Create</button>
+        <button class="btn btn-success mt-2" type="submit">{% trans 'Create' %}</button>
     </form>
 {% endblock content %}

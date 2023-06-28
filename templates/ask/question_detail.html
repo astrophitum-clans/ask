@@ -1,17 +1,18 @@
 {% extends '_base.html' %}
+{% load i18n %}
 
-{% block title %}Question {{ question.id }}{% endblock title %}
+{% block title %}{% trans 'Question' %}{% endblock title %}
 
 {% block head %}
-    {% include 'ask/like_script.html' %}
+    {% include 'ask/_like_script.html' %}
 {% endblock %}
 
 {% block content %}
-    <a href="{% url 'question_create' %}" class="btn btn-success mb-4">Ask Question</a>
-    <div>
-        <h5 class="mb-0 text-primary">Question {{ question.id }}</h5>
+    <a href="{% url 'question_create' %}" class="btn btn-success mb-4">{% trans 'Ask Question' %}</a>
+    <div class="col-md-8 col-lg-6 mt-4">
+        <h6 class="mb-2 text-primary">{% trans 'Question' %}:</h6>
         <small class="text-body-secondary">{{ question.created_at }}, <i>by {{ question.author }}</i></small>
-        <p class="mt-1 mb-2">{{ question.text }}</p>
+        <h6 class="mb-2">{{ question.text }}</h6>
         <p>
             <a href="{% url 'like' %}" class="like_unlike_btn text-decoration-none
             {% if user in question.like.all %} text-danger
@@ -28,16 +29,16 @@
         </p>
         <hr>
         <div>
-            <h5 class="mb-2 text-primary">Answers:</h5>
+            <h6 class="mb-2 text-primary">{% trans 'Answers' %}:</h6>
             {% if not question.answers.all %}
-                <p class="text-secondary">There is no answer to this question yet</p>
+                <p class="text-secondary">{% trans 'There is no answer to this question yet' %}</p>
             {% else %}
                 {% for answer in question.answers.all %}
                 <div class="mb-4">
                     <small class="mb-1 text-body-secondary">
                         {{ answer.created_at }}, <i>by {{ answer.author }}</i>
                     </small>
-                    <p class="card-text mb-2">{{ answer.text }}</p>
+                    <h6 class="card-text mb-2">{{ answer.text }}</h6>
                     <p>
                         <a href="{% url 'like' %}" class="like_unlike_btn text-decoration-none
                         {% if user in answer.like.all %} text-danger

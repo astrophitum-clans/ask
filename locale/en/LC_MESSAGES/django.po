@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-14 22:09+0000\n"
+"POT-Creation-Date: 2023-06-27 18:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,40 +78,44 @@ msgstr ""
 msgid "Russian"
 msgstr ""
 
-#: templates/_base.html:23
+#: templates/_base.html:29 templates/home.html:3
 msgid "Home"
 msgstr ""
 
-#: templates/_base.html:24
+#: templates/_base.html:30 templates/ask/question_list.html:3
 msgid "Questions"
 msgstr ""
 
-#: templates/_base.html:25
+#: templates/_base.html:31 templates/ask/question_detail.html:32
 msgid "Answers"
 msgstr ""
 
-#: templates/_base.html:26
+#: templates/_base.html:32
 msgid "FAQs"
 msgstr ""
 
-#: templates/_base.html:27
+#: templates/_base.html:33
 msgid "About"
 msgstr ""
 
-#: templates/_base.html:32
+#: templates/_base.html:38
 msgid "Log Out"
 msgstr ""
 
-#: templates/_base.html:33 templates/account/profile.html:7
-msgid "My Profile"
+#: templates/_base.html:39
+msgid "Profile"
 msgstr ""
 
-#: templates/_base.html:35
+#: templates/_base.html:41
 msgid "Log In"
 msgstr ""
 
-#: templates/_base.html:36
+#: templates/_base.html:42
 msgid "Sign Up"
+msgstr ""
+
+#: templates/account/profile.html:7
+msgid "My Profile"
 msgstr ""
 
 #: templates/account/profile.html:11
@@ -128,4 +132,77 @@ msgstr ""
 
 #: templates/account/profile.html:17
 msgid "Dark"
+msgstr ""
+
+#: templates/ask/_question_list.html:6 templates/ask/answer_list.html:18
+#: templates/ask/question_answer.html:10
+msgid "by"
+msgstr ""
+
+#: templates/ask/_question_list.html:26
+msgid "Details"
+msgstr ""
+
+#: templates/ask/_question_list.html:28 templates/ask/question_answer.html:17
+msgid "Answer"
+msgstr ""
+
+#: templates/ask/answer_list.html:3 templates/ask/answer_list.html:10
+#: templates/ask/answers_to_my_question_list.html:10
+msgid "My Answers"
+msgstr ""
+
+#: templates/ask/answer_list.html:8
+#: templates/ask/answers_to_my_question_list.html:8 templates/ask/faq.html:5
+#: templates/ask/my_question_list.html:8 templates/ask/question_answer.html:7
+#: templates/ask/question_create.html:5 templates/ask/question_detail.html:11
+#: templates/ask/question_list.html:8 templates/home.html:5
+msgid "Ask Question"
+msgstr ""
+
+#: templates/ask/answer_list.html:11
+#: templates/ask/answers_to_my_question_list.html:11
+msgid "To My Questions"
+msgstr ""
+
+#: templates/ask/answer_list.html:16 templates/ask/question_answer.html:9
+#: templates/ask/question_detail.html:4 templates/ask/question_detail.html:13
+msgid "Question"
+msgstr ""
+
+#: templates/ask/answer_list.html:35
+msgid "My Answer"
+msgstr ""
+
+#: templates/ask/answers_to_my_question_list.html:3
+msgid "Answers To My Questions"
+msgstr ""
+
+#: templates/ask/my_question_list.html:3 templates/ask/my_question_list.html:11
+#: templates/ask/question_list.html:11
+msgid "My Questions"
+msgstr ""
+
+#: templates/ask/my_question_list.html:10 templates/ask/question_list.html:10
+msgid "All Questions"
+msgstr ""
+
+#: templates/ask/question_answer.html:5
+msgid "Answer the Question"
+msgstr ""
+
+#: templates/ask/question_answer.html:13
+msgid "Your answer"
+msgstr ""
+
+#: templates/ask/question_create.html:8
+msgid "Ask question"
+msgstr ""
+
+#: templates/ask/question_create.html:12
+msgid "Create"
+msgstr ""
+
+#: templates/ask/question_detail.html:34
+msgid "There is no answer to this question yet"
 msgstr ""
