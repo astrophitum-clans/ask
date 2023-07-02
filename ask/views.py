@@ -22,8 +22,9 @@ class HomePageView(LoginRequiredMixin, LastAnswerCheckMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['last_questions'] = Question.objects.all()[:6]
-        context['top_questions'] = Question.objects.all().annotate(like_count=Count('like')).order_by('-like_count')[:6]
+        context['last_questions'] = Question.objects.all()[:6].prefetch_related('author')
+        context['top_questions'] = Question.objects.all().annotate(like_count=Count('like')).order_by('-like_count') \
+            [:6].prefetch_related('author')
         return context
 
 
@@ -38,6 +39,9 @@ class QuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
     context_object_name = 'question_list'
     template_name = 'ask/question_list.html'
 
+    def get_queryset(self):
+        return Question.objects.all().prefetch_related('author', 'like', 'unlike')
+
 
 class MyQuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
     """Only current user`s questions list view"""
@@ -46,7 +50,7 @@ class MyQuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
     template_name = 'ask/my_question_list.html'
 
     def get_queryset(self):
-        return Question.objects.filter(author=self.request.user)
+        return Question.objects.filter(author=self.request.user).prefetch_related('author', 'like', 'unlike')
 
 
 class QuestionDetailView(LoginRequiredMixin, LastAnswerCheckMixin, DetailView):
@@ -99,7 +103,9 @@ class AnswerListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
     template_name = 'ask/answer_list.html'
 
     def get_queryset(self):
-        return Answer.objects.filter(author=self.request.user)
+        return Answer.objects.filter(author=self.request.user)\
+            .prefetch_related('author', 'like', 'unlike',
+                              'question', 'question__author', 'question__like', 'question__unlike')
 
 
 class AnswerToMyQuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
@@ -109,7 +115,7 @@ class AnswerToMyQuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListV
     template_name = 'ask/answers_to_my_question_list.html'
 
     def get_queryset(self):
-        return Question.objects.filter(author=self.request.user)
+        return Question.objects.filter(author=self.request.user).prefetch_related('author', 'like', 'unlike')
 
 
 @login_required
