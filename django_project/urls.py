@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
 from accounts.views import UserProfileView
+from django_project import settings
 
 urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
@@ -25,3 +26,9 @@ urlpatterns = i18n_patterns(
     path('accounts/', include('allauth.urls')),
     path('', include('ask.urls')),
 )
+
+if settings.DEBUG: # new
+    import debug_toolbar
+    urlpatterns = [
+        path("__debug__/", include(debug_toolbar.urls)),
+    ] + urlpatterns

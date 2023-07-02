@@ -21,13 +21,12 @@ class LastAnswerCheckMixin:
     def get(self, request, *args, **kwargs):
 
         LAST_ANSWER_TIMEDELTA = 3  # hours
-        random_question = get_random_question(request.user)
 
-        if random_question and (
-                not request.user.last_answer  # is None - first time show it
-                or datetime.now() - request.user.last_answer.replace(tzinfo=None) >
-                timedelta(hours=LAST_ANSWER_TIMEDELTA)
-        ):
-            return redirect(reverse_lazy('answer_to_question', kwargs={'pk': random_question.id}))
+        if (not request.user.last_answer  # is None - first time show it
+                or datetime.now() - request.user.last_answer.replace(tzinfo=None) > timedelta(
+                    hours=LAST_ANSWER_TIMEDELTA)):
+            if Question.objects.exclude(author=request.user).exclude(answers__author=request.user).exists():
+                random_question = get_random_question(request.user)
+                return redirect(reverse_lazy('answer_to_question', kwargs={'pk': random_question.id}))
 
         return super().get(request, *args, **kwargs)

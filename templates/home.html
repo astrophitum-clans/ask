@@ -1,11 +1,44 @@
 {% extends '_base.html' %}
 {% load i18n %}
 {% block title %}{% trans 'Home' %}{% endblock title %}
+
 {% block content %}
     <a href="{% url 'question_create' %}" class="btn btn-success mb-4">{% trans 'Ask Question' %}</a>
     <h5 class="text-primary">{% trans 'Last Questions' %}</h5>
-    <h5 class="text-primary">{% trans 'Last Answers' %}</h5>
-    <h5 class="text-primary">{% trans 'Top Questions' %}</h5>
-    <h5 class="text-primary">{% trans 'Top Answers' %}</h5>
-    <p>Created by Michail Kuznetsov</p>
+    <div class="row mt-4">
+        {% for question in last_questions %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <small class="text-body-secondary">
+                {{ question.created_at }}, {% trans 'by' %} {{ question.author }}:
+            </small>
+            <h6 class="mb-3 mt-1 ">
+    {#          {% if question.author == user %} text-success {% else %} text-primary {% endif %}#}
+                {{ question.text }}
+            </h6>
+            <a class="text-decoration-none" href="{% url 'question_detail' pk=question.id %}">{% trans 'Details' %}</a>
+            {% if question.author != user %}
+            <a class="text-decoration-none text-success mx-2" href="{% url 'answer_to_question' pk=question.id %}">{% trans 'Answer' %}</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <hr class="mt-0">
+    <h5 class="text-primary mt-4">{% trans 'Top Questions' %}</h5>
+    <div class="row mt-4">
+        {% for question in top_questions %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <small class="text-body-secondary">
+                {{ question.created_at }}, {% trans 'by' %} {{ question.author }}:
+            </small>
+            <h6 class="mb-3 mt-1 ">
+    {#          {% if question.author == user %} text-success {% else %} text-primary {% endif %}#}
+                {{ question.text }}
+            </h6>
+            <a class="text-decoration-none" href="{% url 'question_detail' pk=question.id %}">{% trans 'Details' %}</a>
+            {% if question.author != user %}
+            <a class="text-decoration-none text-success mx-2" href="{% url 'answer_to_question' pk=question.id %}">{% trans 'Answer' %}</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
 {% endblock content %}

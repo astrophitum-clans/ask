@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Count
 from django.http import JsonResponse
 from django.shortcuts import redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
@@ -18,6 +19,12 @@ from .utils import LastAnswerCheckMixin
 class HomePageView(LoginRequiredMixin, LastAnswerCheckMixin, TemplateView):
     """Home page view"""
     template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['last_questions'] = Question.objects.all()[:6]
+        context['top_questions'] = Question.objects.all().annotate(like_count=Count('like')).order_by('-like_count')[:6]
+        return context
 
 
 class FaqPageView(LoginRequiredMixin, LastAnswerCheckMixin, TemplateView):
@@ -69,7 +76,6 @@ class AnswerToQuestionView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         """Add question to context"""
-        print(kwargs)
         context = super().get_context_data(**kwargs)
         context['question'] = get_object_or_404(Question, pk=self.kwargs['pk'])
         return context
@@ -88,7 +94,7 @@ class AnswerToQuestionView(LoginRequiredMixin, CreateView):
 
 class AnswerListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
     """Current user answers view"""
-    model = Question
+    model = Answer
     context_object_name = 'answer_list'
     template_name = 'ask/answer_list.html'
 
@@ -129,13 +135,13 @@ def like(request):
             reversed_status = 'checked' if user in getattr(target, reversed_choice).all() else 'unchecked'
 
             # set choice to model & its status
-            if user in getattr(target, choice).all():   # ex: question.like.all()
+            if user in getattr(target, choice).all():  # ex: question.like.all()
                 getattr(target, choice).remove(user)
                 status = 'unchecked'
             else:
                 getattr(target, choice).add(user)
                 status = 'checked'
-                if reversed_status == 'checked':   # remove if user set both like & unlike
+                if reversed_status == 'checked':  # remove if user set both like & unlike
                     getattr(target, reversed_choice).remove(user)
                     reversed_status = 'unchecked'
 
