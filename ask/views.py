@@ -58,6 +58,13 @@ class QuestionDetailView(LoginRequiredMixin, LastAnswerCheckMixin, DetailView):
     model = Question
     template_name = 'ask/question_detail.html'
 
+    def get_context_data(self, **kwargs):
+        """Add performance: answers to context"""
+        context = super().get_context_data(**kwargs)
+        context['answers'] = Answer.objects.filter(question=self.kwargs['pk']).prefetch_related('author', 'like',
+                                                                                                'unlike')
+        return context
+
 
 class QuestionCreateView(LoginRequiredMixin, LastAnswerCheckMixin, CreateView):
     """Create question view"""
@@ -103,7 +110,7 @@ class AnswerListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
     template_name = 'ask/answer_list.html'
 
     def get_queryset(self):
-        return Answer.objects.filter(author=self.request.user)\
+        return Answer.objects.filter(author=self.request.user) \
             .prefetch_related('author', 'like', 'unlike',
                               'question', 'question__author', 'question__like', 'question__unlike')
 

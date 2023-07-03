@@ -30,10 +30,10 @@
         <hr>
         <div>
             <h6 class="mb-2 text-primary">{% trans 'Answers' %}:</h6>
-            {% if not question.answers.all %}
+            {% if not answers %}
                 <p class="text-secondary">{% trans 'There is no answer to this question yet' %}</p>
             {% else %}
-                {% for answer in question.answers.all %}
+                {% for answer in answers %}
                 <div class="mb-4">
                     <small class="mb-1 text-body-secondary">
                         {{ answer.created_at }}, <i>by {{ answer.author }}</i>
