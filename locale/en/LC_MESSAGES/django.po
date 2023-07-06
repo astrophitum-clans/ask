@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 18:53+0000\n"
+"POT-Creation-Date: 2023-07-06 14:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,35 +70,32 @@ msgstr ""
 msgid "answers"
 msgstr ""
 
-#: django_project/settings.py:136
+#: django_project/settings.py:142
 msgid "English"
 msgstr ""
 
-#: django_project/settings.py:137
+#: django_project/settings.py:143
 msgid "Russian"
 msgstr ""
 
-#: templates/_base.html:29 templates/home.html:3
+#: templates/_base.html:30 templates/home.html:3
 msgid "Home"
 msgstr ""
 
-#: templates/_base.html:30 templates/ask/question_list.html:3
+#: templates/_base.html:31 templates/ask/question_list.html:3
 msgid "Questions"
 msgstr ""
 
-#: templates/_base.html:31 templates/ask/question_detail.html:32
+#: templates/_base.html:32 templates/ask/question_detail.html:32
 msgid "Answers"
 msgstr ""
 
-#: templates/_base.html:32
+#: templates/_base.html:33
 msgid "FAQs"
 msgstr ""
 
-#: templates/_base.html:33
-msgid "About"
-msgstr ""
-
-#: templates/_base.html:38
+#: templates/_base.html:38 templates/account/logout.html:5
+#: templates/account/logout.html:13
 msgid "Log Out"
 msgstr ""
 
@@ -106,15 +103,21 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: templates/_base.html:41
+#: templates/_base.html:41 templates/account/login.html:5
+#: templates/account/login.html:8 templates/account/login.html:12
 msgid "Log In"
 msgstr ""
 
-#: templates/_base.html:42
+#: templates/_base.html:42 templates/account/signup.html:5
+#: templates/account/signup.html:8 templates/account/signup.html:12
 msgid "Sign Up"
 msgstr ""
 
-#: templates/account/profile.html:7
+#: templates/account/logout.html:9
+msgid "Are you sure want to log out?"
+msgstr ""
+
+#: templates/account/profile.html:4 templates/account/profile.html:7
 msgid "My Profile"
 msgstr ""
 
@@ -135,15 +138,18 @@ msgid "Dark"
 msgstr ""
 
 #: templates/ask/_question_list.html:6 templates/ask/answer_list.html:18
-#: templates/ask/question_answer.html:10
+#: templates/ask/question_answer.html:10 templates/home.html:12
+#: templates/home.html:31
 msgid "by"
 msgstr ""
 
-#: templates/ask/_question_list.html:26
+#: templates/ask/_question_list.html:26 templates/home.html:18
+#: templates/home.html:37
 msgid "Details"
 msgstr ""
 
 #: templates/ask/_question_list.html:28 templates/ask/question_answer.html:17
+#: templates/home.html:20 templates/home.html:39
 msgid "Answer"
 msgstr ""
 
@@ -156,7 +162,7 @@ msgstr ""
 #: templates/ask/answers_to_my_question_list.html:8 templates/ask/faq.html:5
 #: templates/ask/my_question_list.html:8 templates/ask/question_answer.html:7
 #: templates/ask/question_create.html:5 templates/ask/question_detail.html:11
-#: templates/ask/question_list.html:8 templates/home.html:5
+#: templates/ask/question_list.html:8 templates/home.html:6
 msgid "Ask Question"
 msgstr ""
 
@@ -176,6 +182,48 @@ msgstr ""
 
 #: templates/ask/answers_to_my_question_list.html:3
 msgid "Answers To My Questions"
+msgstr ""
+
+#: templates/ask/faq.html:9
+msgid "Find the answers for the most frequently asked questions below"
+msgstr ""
+
+#: templates/ask/faq.html:14
+msgid "What is it anyway?"
+msgstr ""
+
+#: templates/ask/faq.html:16
+msgid "Ask questions to the universe and answer them. Let's help each other!"
+msgstr ""
+
+#: templates/ask/faq.html:21
+msgid "I want an interface in another language or another color?"
+msgstr ""
+
+#: templates/ask/faq.html:23
+msgid ""
+"<strong><u>Certainly! </u></strong> You can change the settings in the User "
+"Profile"
+msgstr ""
+
+#: templates/ask/faq.html:28
+msgid "Why is my question still not answered?"
+msgstr ""
+
+#: templates/ask/faq.html:30
+msgid ""
+"Perhaps the universe did not like him very much. A good question is the "
+"basis for a good answer. Try to wait..."
+msgstr ""
+
+#: templates/ask/faq.html:35
+msgid "Why don't I use the app without answering the question?"
+msgstr ""
+
+#: templates/ask/faq.html:37
+msgid ""
+"It is proposed to obligatorily answer the question of the universe once a "
+"day. Then use as you please."
 msgstr ""
 
 #: templates/ask/my_question_list.html:3 templates/ask/my_question_list.html:11
@@ -205,4 +253,12 @@ msgstr ""
 
 #: templates/ask/question_detail.html:34
 msgid "There is no answer to this question yet"
+msgstr ""
+
+#: templates/home.html:7
+msgid "Last Questions"
+msgstr ""
+
+#: templates/home.html:26
+msgid "Top Questions"
 msgstr ""

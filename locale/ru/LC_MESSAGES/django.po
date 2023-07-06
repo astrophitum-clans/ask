@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 18:53+0000\n"
+"POT-Creation-Date: 2023-07-06 14:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: ask/models.py:11 ask/models.py:22 ask/models.py:31
 msgid "question"
@@ -72,35 +72,32 @@ msgstr "не нравится"
 msgid "answers"
 msgstr "ответы"
 
-#: django_project/settings.py:136
+#: django_project/settings.py:142
 msgid "English"
 msgstr "Английский"
 
-#: django_project/settings.py:137
+#: django_project/settings.py:143
 msgid "Russian"
 msgstr "Русский"
 
-#: templates/_base.html:29 templates/home.html:3
+#: templates/_base.html:30 templates/home.html:3
 msgid "Home"
 msgstr "Главная"
 
-#: templates/_base.html:30 templates/ask/question_list.html:3
+#: templates/_base.html:31 templates/ask/question_list.html:3
 msgid "Questions"
 msgstr "Вопросы"
 
-#: templates/_base.html:31 templates/ask/question_detail.html:32
+#: templates/_base.html:32 templates/ask/question_detail.html:32
 msgid "Answers"
 msgstr "Ответы"
 
-#: templates/_base.html:32
+#: templates/_base.html:33
 msgid "FAQs"
 msgstr ""
 
-#: templates/_base.html:33
-msgid "About"
-msgstr "О Приложении"
-
-#: templates/_base.html:38
+#: templates/_base.html:38 templates/account/logout.html:5
+#: templates/account/logout.html:13
 msgid "Log Out"
 msgstr "Выйти"
 
@@ -108,15 +105,21 @@ msgstr "Выйти"
 msgid "Profile"
 msgstr "Профиль"
 
-#: templates/_base.html:41
+#: templates/_base.html:41 templates/account/login.html:5
+#: templates/account/login.html:8 templates/account/login.html:12
 msgid "Log In"
 msgstr "Войти"
 
-#: templates/_base.html:42
+#: templates/_base.html:42 templates/account/signup.html:5
+#: templates/account/signup.html:8 templates/account/signup.html:12
 msgid "Sign Up"
 msgstr "Регистрация"
 
-#: templates/account/profile.html:7
+#: templates/account/logout.html:9
+msgid "Are you sure want to log out?"
+msgstr "Вы уверены, что хотите выйти?"
+
+#: templates/account/profile.html:4 templates/account/profile.html:7
 msgid "My Profile"
 msgstr "Мой Профиль"
 
@@ -137,15 +140,18 @@ msgid "Dark"
 msgstr "Тёмный"
 
 #: templates/ask/_question_list.html:6 templates/ask/answer_list.html:18
-#: templates/ask/question_answer.html:10
+#: templates/ask/question_answer.html:10 templates/home.html:12
+#: templates/home.html:31
 msgid "by"
 msgstr "от"
 
-#: templates/ask/_question_list.html:26
+#: templates/ask/_question_list.html:26 templates/home.html:18
+#: templates/home.html:37
 msgid "Details"
 msgstr "Детали"
 
 #: templates/ask/_question_list.html:28 templates/ask/question_answer.html:17
+#: templates/home.html:20 templates/home.html:39
 msgid "Answer"
 msgstr "Ответ"
 
@@ -158,7 +164,7 @@ msgstr "Мои Ответы"
 #: templates/ask/answers_to_my_question_list.html:8 templates/ask/faq.html:5
 #: templates/ask/my_question_list.html:8 templates/ask/question_answer.html:7
 #: templates/ask/question_create.html:5 templates/ask/question_detail.html:11
-#: templates/ask/question_list.html:8 templates/home.html:5
+#: templates/ask/question_list.html:8 templates/home.html:6
 msgid "Ask Question"
 msgstr "Задать Вопрос"
 
@@ -177,9 +183,57 @@ msgid "My Answer"
 msgstr "Мой Ответ"
 
 #: templates/ask/answers_to_my_question_list.html:3
-#| msgid "To My Questions"
 msgid "Answers To My Questions"
 msgstr "Ответы На Мои Вопросы"
+
+#: templates/ask/faq.html:9
+msgid "Find the answers for the most frequently asked questions below"
+msgstr "Найдите ответы на наиболее часто задаваемые вопросы ниже"
+
+#: templates/ask/faq.html:14
+msgid "What is it anyway?"
+msgstr "Что это вообще такое?"
+
+#: templates/ask/faq.html:16
+msgid "Ask questions to the universe and answer them. Let's help each other!"
+msgstr ""
+"Задавайте вопросы вселенной и отвечайте на них. Давайте поможем друг другу!"
+
+#: templates/ask/faq.html:21
+msgid "I want an interface in another language or another color?"
+msgstr "Я хочу интерфейс на другом языке или в другом цвете?"
+
+#: templates/ask/faq.html:23
+msgid ""
+"<strong><u>Certainly! </u></strong> You can change the settings in the User "
+"Profile"
+msgstr ""
+"<strong><u>Конечно! </u></strong> Вы можете изменить настройки в Профиле "
+"пользователя"
+
+#: templates/ask/faq.html:28
+msgid "Why is my question still not answered?"
+msgstr "Почему на мой вопрос до сих пор нет ответа?"
+
+#: templates/ask/faq.html:30
+msgid ""
+"Perhaps the universe did not like him very much. A good question is the "
+"basis for a good answer. Try to wait..."
+msgstr ""
+"Возможно, вселенная его не очень любила. Хороший вопрос - это основа для "
+"хорошего ответа. Попробуйте подождать..."
+
+#: templates/ask/faq.html:35
+msgid "Why don't I use the app without answering the question?"
+msgstr "Почему я не могу использовать приложение, не ответив на вопрос?"
+
+#: templates/ask/faq.html:37
+msgid ""
+"It is proposed to obligatorily answer the question of the universe once a "
+"day. Then use as you please."
+msgstr ""
+"Предлагается обезательно ответить на вопрос вселенной раз в сутки. Затем "
+"пользуйтесь как вам удобно."
 
 #: templates/ask/my_question_list.html:3 templates/ask/my_question_list.html:11
 #: templates/ask/question_list.html:11
@@ -191,12 +245,10 @@ msgid "All Questions"
 msgstr "Все Вопросы"
 
 #: templates/ask/question_answer.html:5
-#| msgid "Ask Question"
 msgid "Answer the Question"
 msgstr "Задать Вопрос"
 
 #: templates/ask/question_answer.html:13
-#| msgid "answer"
 msgid "Your answer"
 msgstr "Ваш ответ"
 
@@ -205,10 +257,20 @@ msgid "Ask question"
 msgstr "Задать вопрос"
 
 #: templates/ask/question_create.html:12
-#| msgid "created_at"
 msgid "Create"
 msgstr "Создать"
 
 #: templates/ask/question_detail.html:34
 msgid "There is no answer to this question yet"
 msgstr "На этот вопрос пока нет ответа"
+
+#: templates/home.html:7
+msgid "Last Questions"
+msgstr "Последние Вопросы"
+
+#: templates/home.html:26
+msgid "Top Questions"
+msgstr "Топ Вопросы"
+
+#~ msgid "About"
+#~ msgstr "О Приложении"
