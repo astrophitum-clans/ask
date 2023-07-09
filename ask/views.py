@@ -65,6 +65,12 @@ class QuestionDetailView(LoginRequiredMixin, LastAnswerCheckMixin, DetailView):
                                                                                                 'unlike')
         return context
 
+    def get_object(self, queryset=None):
+        question = super().get_object(queryset=queryset)
+        question.new_answers_count = 0
+        question.save()
+        return question
+
 
 class QuestionCreateView(LoginRequiredMixin, LastAnswerCheckMixin, CreateView):
     """Create question view"""
@@ -93,8 +99,11 @@ class AnswerToQuestionView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         """Set current author, question and add answer`s datetime to current user"""
-        form.instance.question = get_object_or_404(Question, pk=self.kwargs['pk'])
+        question = get_object_or_404(Question, pk=self.kwargs['pk'])
+        form.instance.question = question
         form.instance.author = self.request.user
+        question.new_answers_count += 1
+        question.save()
         self.update_user_last_answer_time(self.request.user)
         return super().form_valid(form)
 

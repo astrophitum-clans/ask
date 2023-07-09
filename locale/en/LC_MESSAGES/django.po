@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-06 14:31+0000\n"
+"POT-Creation-Date: 2023-07-09 16:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,27 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ask/models.py:11 ask/models.py:22 ask/models.py:31
+#: ask/models.py:11 ask/models.py:23 ask/models.py:32
 msgid "question"
 msgstr ""
 
-#: ask/models.py:12 ask/models.py:33
+#: ask/models.py:12 ask/models.py:34
 msgid "author"
 msgstr ""
 
-#: ask/models.py:13 ask/models.py:34
+#: ask/models.py:13 ask/models.py:35
 msgid "created_at"
 msgstr ""
 
-#: ask/models.py:14 ask/models.py:35
+#: ask/models.py:14 ask/models.py:36
 msgid "updated_at"
 msgstr ""
 
-#: ask/models.py:15 ask/models.py:36
+#: ask/models.py:15 ask/models.py:37
 msgid "is_active"
 msgstr ""
 
-#: ask/models.py:16 ask/models.py:37
+#: ask/models.py:16 ask/models.py:38
 msgid "is_deleted"
 msgstr ""
 
@@ -50,23 +50,27 @@ msgstr ""
 msgid "unlikes"
 msgstr ""
 
-#: ask/models.py:23
+#: ask/models.py:19
+msgid "new answers count"
+msgstr ""
+
+#: ask/models.py:24
 msgid "questions"
 msgstr ""
 
-#: ask/models.py:32 ask/models.py:43
+#: ask/models.py:33 ask/models.py:44
 msgid "answer"
 msgstr ""
 
-#: ask/models.py:38
+#: ask/models.py:39
 msgid "like"
 msgstr ""
 
-#: ask/models.py:39
+#: ask/models.py:40
 msgid "unlike"
 msgstr ""
 
-#: ask/models.py:44
+#: ask/models.py:45
 msgid "answers"
 msgstr ""
 
@@ -95,7 +99,7 @@ msgid "FAQs"
 msgstr ""
 
 #: templates/_base.html:38 templates/account/logout.html:5
-#: templates/account/logout.html:13
+#: templates/account/logout.html:8 templates/account/logout.html:13
 msgid "Log Out"
 msgstr ""
 
@@ -143,12 +147,16 @@ msgstr ""
 msgid "by"
 msgstr ""
 
-#: templates/ask/_question_list.html:26 templates/home.html:18
+#: templates/ask/_question_list.html:13
+msgid "New answers"
+msgstr ""
+
+#: templates/ask/_question_list.html:29 templates/home.html:18
 #: templates/home.html:37
 msgid "Details"
 msgstr ""
 
-#: templates/ask/_question_list.html:28 templates/ask/question_answer.html:17
+#: templates/ask/_question_list.html:31 templates/ask/question_answer.html:17
 #: templates/home.html:20 templates/home.html:39
 msgid "Answer"
 msgstr ""
@@ -212,8 +220,8 @@ msgstr ""
 
 #: templates/ask/faq.html:30
 msgid ""
-"Perhaps the universe did not like him very much. A good question is the "
-"basis for a good answer. Try to wait..."
+"Perhaps the universe didn't like it very much. A good question is the "
+"foundation of a good answer. Try to wait..."
 msgstr ""
 
 #: templates/ask/faq.html:35

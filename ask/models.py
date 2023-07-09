@@ -16,6 +16,7 @@ class Question(models.Model):
     is_deleted = models.BooleanField(default=False, db_index=True, verbose_name=_('is_deleted'))
     like = models.ManyToManyField(get_user_model(), related_name='question_likes', verbose_name=_('likes'))
     unlike = models.ManyToManyField(get_user_model(), related_name='question_unlikes', verbose_name=_('unlikes'))
+    new_answers_count = models.IntegerField(verbose_name=_('new answers count'), default=0)
 
     class Meta:
         ordering = ['-created_at']

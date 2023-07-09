@@ -9,6 +9,9 @@
 {#          {% if question.author == user %} text-success {% else %} text-primary {% endif %}#}
             {{ question.text }}
         </h6>
+        {% if question.author == user and question.new_answers_count > 0 %}
+            <p class="mb-2"><small class="text-danger">{% trans 'New answers' %}: {{ question.new_answers_count }}</small></p>
+        {% endif %}
         <p class="mb-2">
             <a href="{% url 'like' %}" class="like_unlike_btn text-decoration-none
             {% if user in question.like.all %} text-danger
