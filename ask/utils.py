@@ -20,7 +20,7 @@ class LastAnswerCheckMixin:
 
     def get(self, request, *args, **kwargs):
 
-        LAST_ANSWER_TIMEDELTA = 3  # hours
+        LAST_ANSWER_TIMEDELTA = 24  # hours
 
         if (not request.user.last_answer  # is None - first time show it
                 or datetime.now() - request.user.last_answer.replace(tzinfo=None) > timedelta(
