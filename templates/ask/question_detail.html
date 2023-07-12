@@ -9,10 +9,13 @@
 
 {% block content %}
     <a href="{% url 'question_create' %}" class="btn btn-success mb-4">{% trans 'Ask Question' %}</a>
+    {% if question.author == user and not has_ai_answer %}
+    <a href="{% url 'ask_ai' q_id=question.id %}" class="btn btn-warning mb-4">{% trans 'Ask AI' %}</a>
+    {% endif %}
     <div class="col-md-8 col-lg-6 mt-4">
         <h6 class="mb-2 text-primary">{% trans 'Question' %}:</h6>
-        <small class="text-body-secondary">{{ question.created_at }}, <i>by {{ question.author }}</i></small>
-        <h6 class="mb-2">{{ question.text }}</h6>
+        <small class="text-body-secondary">{{ question.created_at }}, {% trans 'by' %} {{ question.author }}</small>
+        <h6 class="mb-2">{{ question.text|linebreaksbr }}</h6>
         <p>
             <a href="{% url 'like' %}" class="like_unlike_btn text-decoration-none
             {% if user in question.like.all %} text-danger
@@ -35,10 +38,10 @@
             {% else %}
                 {% for answer in answers %}
                 <div class="mb-4">
-                    <small class="mb-1 text-body-secondary">
-                        {{ answer.created_at }}, <i>by {{ answer.author }}</i>
+                    <small class="mb-1 {% if answer.author.is_ai %}text-warning{% else %}text-secondary{% endif %}">
+                        {{ answer.created_at }}, {% trans 'by' %} {{ answer.author }}
                     </small>
-                    <h6 class="card-text mb-2">{{ answer.text }}</h6>
+                    <div class="mb-2">{{ answer.text|linebreaksbr }}</div>
                     <p>
                         <a href="{% url 'like' %}" class="like_unlike_btn text-decoration-none
                         {% if user in answer.like.all %} text-danger

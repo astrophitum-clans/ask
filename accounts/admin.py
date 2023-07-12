@@ -19,6 +19,7 @@ class CustomUserAdmin(UserAdmin):
         'email',
         'username',
         'is_superuser',
+        'is_ai',
     ]
 
 

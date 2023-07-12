@@ -189,3 +189,10 @@ INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
 # SECURE_HSTS_PRELOAD = env.bool("DJANGO_SECURE_HSTS_PRELOAD", default=True)
 # SESSION_COOKIE_SECURE = env.bool("DJANGO_SESSION_COOKIE_SECURE", default=True)
 # CSRF_COOKIE_SECURE = env.bool("DJANGO_CSRF_COOKIE_SECURE", default=True)
+
+# openai
+OPENAI_KEY = env('OPENAI_API_KEY', default=None)
+
+# # celery
+CELERY_BROKER_URL = env('CELERY_BROKER', default='redis://redis:6379/0')
+CELERY_RESULT_BACKEND = env('CELERY_BACKEND', default='redis://redis:6379/0')

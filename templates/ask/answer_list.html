@@ -17,7 +17,7 @@
             <small class="text-body-secondary">
                {{ answer.question.created_at }}, {% trans 'by' %} {{ answer.question.author }}:
             </small>
-            <h6 class="mb-3 mt-1 ">{{ answer.question.text }}</h6>
+            <h6 class="mb-3 mt-1 ">{{ answer.question.text|linebreaksbr }}</h6>
             <p class="mb-3">
                 <a href="{% url 'like' %}" class="like_unlike_btn text-decoration-none
                 {% if user in answer.question.like.all %} text-danger
@@ -36,7 +36,7 @@
             <small class="text-body-secondary">
                 {{ answer.created_at }}:
             </small>
-            <p class="mb-3 mt-1 ">{{ answer.text }}</p>
+            <p class="mb-3 mt-1 ">{{ answer.text|linebreaksbr }}</p>
                 <p class="mb-3">
                 <a href="{% url 'like' %}" class="like_unlike_btn text-decoration-none
                 {% if user in answer.like.all %} text-danger

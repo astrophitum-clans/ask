@@ -1,6 +1,8 @@
 import random
 from datetime import datetime, timedelta
 
+import openai
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
@@ -10,7 +12,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.urls import reverse_lazy
 
+from django_project import settings
 from .models import Question, Answer
+from .tasks import ask_ai_task
 from .utils import LastAnswerCheckMixin
 
 
@@ -63,6 +67,10 @@ class QuestionDetailView(LoginRequiredMixin, LastAnswerCheckMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['answers'] = Answer.objects.filter(question=self.kwargs['pk']).prefetch_related('author', 'like',
                                                                                                 'unlike')
+        context['has_ai_answer'] = Answer.objects\
+            .filter(author__is_ai=True)\
+            .filter(question__id=self.kwargs['pk'])\
+            .exists()
         return context
 
     def get_object(self, queryset=None):
@@ -179,3 +187,10 @@ def like(request):
             }
 
             return JsonResponse(data, safe=False)
+
+
+@login_required
+def ask_ai(request, q_id):
+    print('try to run task')
+    celery_task = ask_ai_task.delay(q_id)
+    return redirect(reverse_lazy('question_detail', kwargs={'pk': q_id}))

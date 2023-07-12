@@ -7,7 +7,7 @@
         </small>
         <h6 class="mb-3 mt-1 ">
 {#          {% if question.author == user %} text-success {% else %} text-primary {% endif %}#}
-            {{ question.text }}
+            {{ question.text|linebreaksbr }}
         </h6>
         {% if question.author == user and question.new_answers_count > 0 %}
             <p class="mb-2"><small class="text-danger">{% trans 'New answers' %}: {{ question.new_answers_count }}</small></p>

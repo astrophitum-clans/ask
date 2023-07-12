@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-09 16:44+0000\n"
+"POT-Creation-Date: 2023-07-12 23:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,7 +92,7 @@ msgstr "Главная"
 msgid "Questions"
 msgstr "Вопросы"
 
-#: templates/_base.html:32 templates/ask/question_detail.html:32
+#: templates/_base.html:32 templates/ask/question_detail.html:35
 msgid "Answers"
 msgstr "Ответы"
 
@@ -144,7 +144,8 @@ msgid "Dark"
 msgstr "Тёмный"
 
 #: templates/ask/_question_list.html:6 templates/ask/answer_list.html:18
-#: templates/ask/question_answer.html:10 templates/home.html:12
+#: templates/ask/question_answer.html:10 templates/ask/question_detail.html:17
+#: templates/ask/question_detail.html:42 templates/home.html:12
 #: templates/home.html:31
 msgid "by"
 msgstr "от"
@@ -182,7 +183,7 @@ msgid "To My Questions"
 msgstr "На Мои Вопросы"
 
 #: templates/ask/answer_list.html:16 templates/ask/question_answer.html:9
-#: templates/ask/question_detail.html:4 templates/ask/question_detail.html:13
+#: templates/ask/question_detail.html:4 templates/ask/question_detail.html:16
 msgid "Question"
 msgstr "Вопрос"
 
@@ -224,10 +225,6 @@ msgid "Why is my question still not answered?"
 msgstr "Почему на мой вопрос до сих пор нет ответа?"
 
 #: templates/ask/faq.html:30
-#, fuzzy
-#| msgid ""
-#| "Perhaps the universe did not like him very much. A good question is the "
-#| "basis for a good answer. Try to wait..."
 msgid ""
 "Perhaps the universe didn't like it very much. A good question is the "
 "foundation of a good answer. Try to wait..."
@@ -272,7 +269,11 @@ msgstr "Задать вопрос"
 msgid "Create"
 msgstr "Создать"
 
-#: templates/ask/question_detail.html:34
+#: templates/ask/question_detail.html:13
+msgid "Ask AI"
+msgstr "Спросить ИИ"
+
+#: templates/ask/question_detail.html:37
 msgid "There is no answer to this question yet"
 msgstr "На этот вопрос пока нет ответа"
 

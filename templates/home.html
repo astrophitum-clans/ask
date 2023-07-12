@@ -13,7 +13,7 @@
             </small>
             <h6 class="mb-3 mt-1 ">
     {#          {% if question.author == user %} text-success {% else %} text-primary {% endif %}#}
-                {{ question.text }}
+                {{ question.text|linebreaksbr }}
             </h6>
             <a class="text-decoration-none" href="{% url 'question_detail' pk=question.id %}">{% trans 'Details' %}</a>
             {% if question.author != user %}
@@ -32,7 +32,7 @@
             </small>
             <h6 class="mb-3 mt-1 ">
     {#          {% if question.author == user %} text-success {% else %} text-primary {% endif %}#}
-                {{ question.text }}
+                {{ question|linebreaksbr }}
             </h6>
             <a class="text-decoration-none" href="{% url 'question_detail' pk=question.id %}">{% trans 'Details' %}</a>
             {% if question.author != user %}

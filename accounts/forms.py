@@ -10,6 +10,7 @@ class CustomUserCreationForm(UserCreationForm):
         fields = (
             'email',
             'username',
+            'is_ai',
         )
 
 
@@ -21,4 +22,5 @@ class CustomUserChangeForm(UserChangeForm):
         fields = (
             'email',
             'username',
+            'is_ai',
         )

@@ -11,6 +11,7 @@ services:
       - 8000:8000
     depends_on:
       - db
+      - redis
     environment:
       - 'DJANGO_SECRET_KEY=django-insecure-q_-fr=&bb42pb_8n^-1!-wmqcuap=s6v!-ocw07b@26$y9$zp9'
       - 'DJANGO_DEBUG=True'
@@ -20,12 +21,36 @@ services:
       - 'DJANGO_SECURE_HSTS_PRELOAD=False'
       - 'DJANGO_SESSION_COOKIE_SECURE=False'
       - 'DJANGO_CSRF_COOKIE_SECURE=False'
+      - 'CELERY_BROKER=redis://redis:6379/0'
+      - 'CELERY_BACKEND=redis://redis:6379/0'
+      - 'OPENAI_API_KEY=sk-'
   db:
     image: postgres:14
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
-
+  celery:
+    build: .
+    command: celery --app=django_project worker --loglevel=info
+    volumes:
+      - .:/code
+    depends_on:
+      - web
+      - redis
+    environment:
+      - 'DJANGO_SECRET_KEY=django-insecure-q_-fr=&bb42pb_8n^-1!-wmqcuap=s6v!-ocw07b@26$y9$zp9'
+      - 'DJANGO_DEBUG=True'
+      - 'DJANGO_SECURE_SSL_REDIRECT=False'
+      - 'DJANGO_SECURE_HSTS_SECONDS=0'
+      - 'DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=False'
+      - 'DJANGO_SECURE_HSTS_PRELOAD=False'
+      - 'DJANGO_SESSION_COOKIE_SECURE=False'
+      - 'DJANGO_CSRF_COOKIE_SECURE=False'
+      - 'CELERY_BROKER=redis://redis:6379/0'
+      - 'CELERY_BACKEND=redis://redis:6379/0'
+      - 'OPENAI_API_KEY=sk-'
+  redis:
+    image: redis:7.0-alpine
 volumes:
   postgres_data:
