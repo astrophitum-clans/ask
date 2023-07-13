@@ -136,7 +136,7 @@ class AnswerToMyQuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListV
     """Only current user`s questions list view"""
     model = Question
     context_object_name = 'question_list'
-    template_name = 'ask/answers_to_my_question_list.html'
+    template_name = 'ask/answer_to_my_question_list.html'
 
     def get_queryset(self):
         return Question.objects.filter(author=self.request.user).prefetch_related('author', 'like', 'unlike')
