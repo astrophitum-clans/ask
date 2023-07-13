@@ -50,7 +50,6 @@ services:
       - 'DJANGO_CSRF_COOKIE_SECURE=False'
       - 'CELERY_BROKER=redis://redis:6379/0'
       - 'CELERY_BACKEND=redis://redis:6379/0'
-      - 'OPENAI_API_KEY=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'
     env_file:
       - web-variables.env
   redis:
