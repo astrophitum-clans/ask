@@ -23,7 +23,8 @@ services:
       - 'DJANGO_CSRF_COOKIE_SECURE=False'
       - 'CELERY_BROKER=redis://redis:6379/0'
       - 'CELERY_BACKEND=redis://redis:6379/0'
-      - 'OPENAI_API_KEY=sk-'
+    env_file:
+      - web-variables.env
   db:
     image: postgres:14
     volumes:
@@ -32,7 +33,7 @@ services:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
   celery:
     build: .
-    command: celery --app=django_project worker --loglevel=info
+    command: celery --app=django_project worker --loglevel=info --logfile=logs/celery.log
     volumes:
       - .:/code
     depends_on:
@@ -49,7 +50,9 @@ services:
       - 'DJANGO_CSRF_COOKIE_SECURE=False'
       - 'CELERY_BROKER=redis://redis:6379/0'
       - 'CELERY_BACKEND=redis://redis:6379/0'
-      - 'OPENAI_API_KEY=sk-'
+      - 'OPENAI_API_KEY=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'
+    env_file:
+      - web-variables.env
   redis:
     image: redis:7.0-alpine
 volumes:

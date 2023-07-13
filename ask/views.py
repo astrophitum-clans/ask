@@ -11,6 +11,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.urls import reverse_lazy
+from celery.result import AsyncResult
 
 from django_project import settings
 from .models import Question, Answer
@@ -67,9 +68,9 @@ class QuestionDetailView(LoginRequiredMixin, LastAnswerCheckMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['answers'] = Answer.objects.filter(question=self.kwargs['pk']).prefetch_related('author', 'like',
                                                                                                 'unlike')
-        context['has_ai_answer'] = Answer.objects\
-            .filter(author__is_ai=True)\
-            .filter(question__id=self.kwargs['pk'])\
+        context['has_ai_answer'] = Answer.objects \
+            .filter(author__is_ai=True) \
+            .filter(question__id=self.kwargs['pk']) \
             .exists()
         return context
 
@@ -190,7 +191,20 @@ def like(request):
 
 
 @login_required
-def ask_ai(request, q_id):
+def ask_ai(request):
+    q_id = request.POST.get('q_id')
     print('try to run task')
     celery_task = ask_ai_task.delay(q_id)
-    return redirect(reverse_lazy('question_detail', kwargs={'pk': q_id}))
+    return JsonResponse({"task_id": celery_task.id}, status=202, safe=False)
+    # TODO не запускать тот же таск повторно...
+
+
+@login_required
+def ask_ai_get_status(request, task_id):
+    task_result = AsyncResult(task_id)
+    result = {
+        "task_id": task_id,
+        "task_status": task_result.status,
+        "task_result": task_result.result
+    }
+    return JsonResponse(result, status=200)

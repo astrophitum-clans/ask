@@ -1,6 +1,7 @@
 // JQuery
 console.log('JS ready!!!')
 $( document ).ready(function() {
+    // like & unlike buttons click func
     $( ".like_unlike_btn" ).click(function( event ) {
 
         // Button id should contain like pointer, target pointer & target id
@@ -45,10 +46,60 @@ $( document ).ready(function() {
                     reversed_btn.addClass('text-primary');
                 }
             },
-            error: function(response) {
-                console.log('error');
+            error: function(err) {
+                console.log(err);
 
             }
         })
     });
+    let request_already_sent = false;
+    $(".ask_ai_btn").click(function(event){
+        event.preventDefault();
+        const q_id = $(this).attr('id');
+        const url = $(this).attr('href');
+        if (!request_already_sent){
+            request_already_sent = true;
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {
+                    'csrfmiddlewaretoken': csrf_token,
+                    'q_id': q_id,
+                },
+                success: function (response) {
+                    $(".message").text('Wait, please...');
+                    getStatus(response.task_id);
+                },
+                error: function (err) {
+                    console.log(err);
+                },
+            });
+        }
+        else {
+            console.log('already sent!');
+        }
+
+    });
 });
+
+function getStatus(taskID) {
+    $.ajax({
+        url: `/ask_ai/${taskID}/`,
+        method: 'GET',
+        success: function(response) {
+
+            const taskStatus = response.task_status;
+
+            if (taskStatus === 'SUCCESS' || taskStatus === 'FAILURE'){
+                location.reload();
+                return false;
+            }
+            setTimeout(function() {
+                getStatus(response.task_id);
+            }, 1000);
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}

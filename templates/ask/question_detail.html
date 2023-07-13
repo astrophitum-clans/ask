@@ -8,8 +8,9 @@
 {% block content %}
     <a href="{% url 'question_create' %}" class="btn btn-success mb-4">{% trans 'Ask Question' %}</a>
     {% if question.author == user and not has_ai_answer %}
-    <a href="{% url 'ask_ai' q_id=question.id %}" class="btn btn-warning mb-4">{% trans 'Ask AI' %}</a>
+    <a href="{% url 'ask_ai' %}" class="btn btn-warning ask_ai_btn mb-4" id="{{ question.id }}">{% trans 'Ask AI' %}</a>
     {% endif %}
+    <div class="message text-warning"></div>
     <div class="col-md-8 col-lg-6 mt-4">
         <h6 class="mb-2 text-primary">{% trans 'Question' %}:</h6>
         <small class="text-body-secondary">{{ question.created_at }}, {% trans 'by' %} {{ question.author }}</small>
