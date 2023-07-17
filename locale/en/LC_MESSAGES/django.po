@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-17 11:37+0000\n"
+"POT-Creation-Date: 2023-07-17 12:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,37 +82,41 @@ msgstr ""
 msgid "Russian"
 msgstr ""
 
-#: templates/_base.html:30 templates/ask/home.html:3
+#: templates/_base.html:19
+msgid "Wait, please"
+msgstr ""
+
+#: templates/_base.html:33 templates/ask/home.html:3
 msgid "Home"
 msgstr ""
 
-#: templates/_base.html:31 templates/ask/question_list.html:3
+#: templates/_base.html:34 templates/ask/question_list.html:3
 msgid "Questions"
 msgstr ""
 
-#: templates/_base.html:32 templates/ask/question_detail.html:34
+#: templates/_base.html:35 templates/ask/question_detail.html:34
 msgid "Answers"
 msgstr ""
 
-#: templates/_base.html:33
+#: templates/_base.html:36 templates/ask/help.html:3 templates/ask/help.html:12
 msgid "Help"
 msgstr ""
 
-#: templates/_base.html:38 templates/account/logout.html:5
+#: templates/_base.html:41 templates/account/logout.html:5
 #: templates/account/logout.html:8 templates/account/logout.html:13
 msgid "Log Out"
 msgstr ""
 
-#: templates/_base.html:39
+#: templates/_base.html:42
 msgid "Profile"
 msgstr ""
 
-#: templates/_base.html:41 templates/account/login.html:5
+#: templates/_base.html:44 templates/account/login.html:5
 #: templates/account/login.html:8 templates/account/login.html:12
 msgid "Log In"
 msgstr ""
 
-#: templates/_base.html:42 templates/account/signup.html:5
+#: templates/_base.html:45 templates/account/signup.html:5
 #: templates/account/signup.html:8 templates/account/signup.html:12
 msgid "Sign Up"
 msgstr ""
@@ -139,10 +143,6 @@ msgstr ""
 
 #: templates/account/profile.html:17
 msgid "Dark"
-msgstr ""
-
-#: templates/ask/_csrf_script.html:4
-msgid "Wait, please"
 msgstr ""
 
 #: templates/ask/_question_list.html:6 templates/ask/answer_list.html:16
@@ -197,50 +197,62 @@ msgstr ""
 msgid "Answers To My Questions"
 msgstr ""
 
-#: templates/ask/help.html:9
-msgid "Find the answers for the most frequently asked questions below"
+#: templates/ask/help.html:8 templates/ask/home.html:9
+msgid ""
+"Please login or register to use Ask ME to the fullest!<br> You will be able "
+"to answer and ask questions and get answers from artificial intelligence!"
 msgstr ""
 
 #: templates/ask/help.html:14
+msgid "Find the answers for the most frequently asked questions below"
+msgstr ""
+
+#: templates/ask/help.html:19
 msgid "What is it anyway?"
 msgstr ""
 
-#: templates/ask/help.html:16
+#: templates/ask/help.html:21
 msgid "Ask questions to the universe and answer them. Let's help each other!"
 msgstr ""
 
-#: templates/ask/help.html:21
+#: templates/ask/help.html:26
 msgid "I want an interface in another language or another color?"
 msgstr ""
 
-#: templates/ask/help.html:23
+#: templates/ask/help.html:28
 msgid ""
 "<strong><u>Certainly! </u></strong> You can change the settings in the User "
 "Profile"
 msgstr ""
 
-#: templates/ask/help.html:28
+#: templates/ask/help.html:33
 msgid "Why is my question still not answered?"
 msgstr ""
 
-#: templates/ask/help.html:30
+#: templates/ask/help.html:35
 msgid ""
 "Perhaps the universe didn't like it very much. A good question is the "
 "foundation of a good answer. Try to wait..."
 msgstr ""
 
-#: templates/ask/help.html:35
+#: templates/ask/help.html:40 templates/ask/help.html:47
 msgid "Why don't I use the app without answering the question?"
 msgstr ""
 
-#: templates/ask/help.html:37
+#: templates/ask/help.html:42 templates/ask/help.html:49
 msgid ""
 "It is proposed to obligatorily answer the question of the universe once a "
 "day. Then use as you please."
 msgstr ""
 
-#: templates/ask/home.html:9
-msgid "Please login or register to use this application to the fullest!"
+#: templates/ask/help.html:54
+msgid "How to get an answer from artificial intelligence?"
+msgstr ""
+
+#: templates/ask/help.html:56
+msgid ""
+"Very simple! Ask a question and click the Ask AI button. You can only get "
+"one answer from the AI per question."
 msgstr ""
 
 #: templates/ask/home.html:12

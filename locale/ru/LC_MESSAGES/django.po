@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-17 11:37+0000\n"
+"POT-Creation-Date: 2023-07-17 12:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,37 +84,41 @@ msgstr "Английский"
 msgid "Russian"
 msgstr "Русский"
 
-#: templates/_base.html:30 templates/ask/home.html:3
+#: templates/_base.html:19
+msgid "Wait, please"
+msgstr "Пожалуйста, подождите"
+
+#: templates/_base.html:33 templates/ask/home.html:3
 msgid "Home"
 msgstr "Главная"
 
-#: templates/_base.html:31 templates/ask/question_list.html:3
+#: templates/_base.html:34 templates/ask/question_list.html:3
 msgid "Questions"
 msgstr "Вопросы"
 
-#: templates/_base.html:32 templates/ask/question_detail.html:34
+#: templates/_base.html:35 templates/ask/question_detail.html:34
 msgid "Answers"
 msgstr "Ответы"
 
-#: templates/_base.html:33
+#: templates/_base.html:36 templates/ask/help.html:3 templates/ask/help.html:12
 msgid "Help"
 msgstr "Помощь"
 
-#: templates/_base.html:38 templates/account/logout.html:5
+#: templates/_base.html:41 templates/account/logout.html:5
 #: templates/account/logout.html:8 templates/account/logout.html:13
 msgid "Log Out"
 msgstr "Выйти"
 
-#: templates/_base.html:39
+#: templates/_base.html:42
 msgid "Profile"
 msgstr "Профиль"
 
-#: templates/_base.html:41 templates/account/login.html:5
+#: templates/_base.html:44 templates/account/login.html:5
 #: templates/account/login.html:8 templates/account/login.html:12
 msgid "Log In"
 msgstr "Войти"
 
-#: templates/_base.html:42 templates/account/signup.html:5
+#: templates/_base.html:45 templates/account/signup.html:5
 #: templates/account/signup.html:8 templates/account/signup.html:12
 msgid "Sign Up"
 msgstr "Регистрация"
@@ -142,10 +146,6 @@ msgstr "Светлый"
 #: templates/account/profile.html:17
 msgid "Dark"
 msgstr "Тёмный"
-
-#: templates/ask/_csrf_script.html:4
-msgid "Wait, please"
-msgstr "Пожалуйста, подождите"
 
 #: templates/ask/_question_list.html:6 templates/ask/answer_list.html:16
 #: templates/ask/home.html:17 templates/ask/home.html:36
@@ -199,24 +199,33 @@ msgstr "Мой Ответ"
 msgid "Answers To My Questions"
 msgstr "Ответы На Мои Вопросы"
 
-#: templates/ask/help.html:9
+#: templates/ask/help.html:8 templates/ask/home.html:9
+msgid ""
+"Please login or register to use Ask ME to the fullest!<br> You will be able "
+"to answer and ask questions and get answers from artificial intelligence!"
+msgstr ""
+"Пожалуйста, войдите или зарегистрируйтесь, чтобы использовать Ask ME в "
+"полной мере!<br>Вы сможете отвечать и задавать вопросы и получать ответы от "
+"искусственного интеллекта!"
+
+#: templates/ask/help.html:14
 msgid "Find the answers for the most frequently asked questions below"
 msgstr "Найдите ответы на наиболее часто задаваемые вопросы ниже"
 
-#: templates/ask/help.html:14
+#: templates/ask/help.html:19
 msgid "What is it anyway?"
 msgstr "Что это вообще такое?"
 
-#: templates/ask/help.html:16
+#: templates/ask/help.html:21
 msgid "Ask questions to the universe and answer them. Let's help each other!"
 msgstr ""
 "Задавайте вопросы вселенной и отвечайте на них. Давайте поможем друг другу!"
 
-#: templates/ask/help.html:21
+#: templates/ask/help.html:26
 msgid "I want an interface in another language or another color?"
 msgstr "Я хочу интерфейс на другом языке или в другом цвете?"
 
-#: templates/ask/help.html:23
+#: templates/ask/help.html:28
 msgid ""
 "<strong><u>Certainly! </u></strong> You can change the settings in the User "
 "Profile"
@@ -224,11 +233,11 @@ msgstr ""
 "<strong><u>Конечно! </u></strong> Вы можете изменить настройки в Профиле "
 "пользователя"
 
-#: templates/ask/help.html:28
+#: templates/ask/help.html:33
 msgid "Why is my question still not answered?"
 msgstr "Почему на мой вопрос до сих пор нет ответа?"
 
-#: templates/ask/help.html:30
+#: templates/ask/help.html:35
 msgid ""
 "Perhaps the universe didn't like it very much. A good question is the "
 "foundation of a good answer. Try to wait..."
@@ -236,11 +245,11 @@ msgstr ""
 "Возможно, вселенной он не очень понравился. Хороший вопрос - это основа для "
 "хорошего ответа. Попробуйте подождать..."
 
-#: templates/ask/help.html:35
+#: templates/ask/help.html:40 templates/ask/help.html:47
 msgid "Why don't I use the app without answering the question?"
 msgstr "Почему я не могу использовать приложение, не ответив на вопрос?"
 
-#: templates/ask/help.html:37
+#: templates/ask/help.html:42 templates/ask/help.html:49
 msgid ""
 "It is proposed to obligatorily answer the question of the universe once a "
 "day. Then use as you please."
@@ -248,11 +257,16 @@ msgstr ""
 "Предлагается обезательно ответить на вопрос вселенной раз в сутки. Затем "
 "пользуйтесь как вам удобно."
 
-#: templates/ask/home.html:9
-msgid "Please login or register to use this application to the fullest!"
-msgstr ""
-"Пожалуйста, войдите или зарегистрируйтесь, чтобы использовать это приложение "
-"в полной мере!"
+#: templates/ask/help.html:54
+msgid "How to get an answer from artificial intelligence?"
+msgstr "Как получить ответ от искусстенного интеллекта?"
+
+#: templates/ask/help.html:56
+msgid ""
+"Very simple! Ask a question and click the Ask AI button. You can only get "
+"one answer from the AI per question."
+msgstr "Очень просто! Задайте вопрос и нажмите кнопку Спросить ИИ."
+"Можно получить только один ответ от ИИ на один вопрос."
 
 #: templates/ask/home.html:12
 msgid "Last Questions"
@@ -294,6 +308,3 @@ msgstr "Спросить ИИ"
 #: templates/ask/question_detail.html:36
 msgid "There is no answer to this question yet"
 msgstr "На этот вопрос пока нет ответа"
-
-#~ msgid "About"
-#~ msgstr "О Приложении"

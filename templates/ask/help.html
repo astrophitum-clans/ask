@@ -1,10 +1,15 @@
 {% extends '_base.html' %}
 {% load i18n %}
-{% block title %}Help{% endblock title %}
+{% block title %}{% trans 'Help' %}{% endblock title %}
 {% block content %}
     <a href="{% url 'question_create' %}" class="btn btn-success mb-4">{% trans 'Ask Question' %}</a>
+    {% if not user.is_authenticated %}
+        <div class="alert alert-primary" role="alert">
+            {% trans 'Please login or register to use Ask ME to the fullest!<br> You will be able to answer and ask questions and get answers from artificial intelligence!' %}
+        </div>
+    {% endif %}
     <section>
-      <h3 class="text-center mb-4 pb-2 text-primary fw-bold">Help</h3>
+      <h3 class="text-center mb-4 pb-2 text-primary fw-bold">{% trans 'Help' %}</h3>
       <p class="text-center mb-5">
         {% trans 'Find the answers for the most frequently asked questions below' %}
       </p>
@@ -35,6 +40,13 @@
           <h6 class="mb-3 text-primary">{% trans "Why don't I use the app without answering the question?" %}</h6>
           <p>
             {% trans 'It is proposed to obligatorily answer the question of the universe once a day. Then use as you please.' %}
+          </p>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-4">
+          <h6 class="mb-3 text-primary">{% trans "How to get an answer from artificial intelligence?" %}</h6>
+          <p>
+            {% trans 'Very simple! Ask a question and click the Ask AI button. You can only get one answer from the AI per question.' %}
           </p>
         </div>
       </div>
