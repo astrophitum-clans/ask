@@ -21,9 +21,9 @@ from .utils import LastAnswerCheckMixin
 
 # Create your views here.
 
-class HomePageView(LoginRequiredMixin, LastAnswerCheckMixin, TemplateView):
+class HomePageView(TemplateView):
     """Home page view"""
-    template_name = 'home.html'
+    template_name = 'ask/home.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -33,9 +33,9 @@ class HomePageView(LoginRequiredMixin, LastAnswerCheckMixin, TemplateView):
         return context
 
 
-class FaqPageView(LoginRequiredMixin, LastAnswerCheckMixin, TemplateView):
-    """FAQ page view"""
-    template_name = 'ask/faq.html'
+class HelpPageView(TemplateView):
+    """Help page view"""
+    template_name = 'ask/help.html'
 
 
 class QuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
@@ -86,7 +86,9 @@ class QuestionCreateView(LoginRequiredMixin, LastAnswerCheckMixin, CreateView):
     model = Question
     template_name = 'ask/question_create.html'
     fields = ['text']
-    success_url = reverse_lazy('my_question_list')
+
+    def get_success_url(self):
+        return reverse_lazy('question_detail', kwargs={'pk': self.object.pk})
 
     def form_valid(self, form):
         form.instance.author = self.request.user

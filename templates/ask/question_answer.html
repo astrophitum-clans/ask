@@ -4,7 +4,6 @@
 
 {% block title %}{% trans 'Answer the Question' %}{% endblock title %}
 {% block content %}
-<a href="{% url 'question_create' %}" class="btn btn-success mb-4">{% trans 'Ask Question' %}</a>
 <div class="col-md-8 col-lg-6">
     <h5 class="mb-4 text-primary">{% trans 'Question' %}:</h5>
     <p class="text-body-secondary mb-2"><small>{{ question.created_at }}, {% trans 'by' %} {{ question.author }}</small></p>

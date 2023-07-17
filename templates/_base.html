@@ -15,6 +15,9 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     {% block head %}
     {% endblock head %}
+    <script>
+        const wait_message = 'Wait, please';
+    </script>
 </head>
 <body>
     <div class="container">
@@ -30,7 +33,7 @@
             <li><a href="{% url 'home' %}" class="nav-link px-2">{% trans 'Home' %}</a></li>
             <li><a href="{% url 'question_list' %}" class="nav-link px-2">{% trans 'Questions' %}</a></li>
             <li><a href="{% url 'answer_list' %}" class="nav-link px-2">{% trans 'Answers' %}</a></li>
-            <li><a href="{% url 'faq' %}" class="nav-link px-2">{% trans 'FAQs' %}</a></li>
+            <li><a href="{% url 'help' %}" class="nav-link px-2">{% trans 'Help' %}</a></li>
         </ul>
 
         <div class="col-md-3 text-end">

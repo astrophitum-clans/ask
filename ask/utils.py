@@ -14,7 +14,10 @@ def get_random_question(user):
 
 
 class LastAnswerCheckMixin:
-    """Mixin: redirect to an answer if current user`s last answer was earlier LAST_ANSWER_TIMEDELTA"""
+    """
+    Mixin: redirect to an answer if current user`s last answer was earlier LAST_ANSWER_TIMEDELTA
+    If new user - don`t redirect
+    """
 
     # ToDo: add next to redirect
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-12 23:22+0000\n"
+"POT-Creation-Date: 2023-07-17 11:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,15 +74,15 @@ msgstr ""
 msgid "answers"
 msgstr ""
 
-#: django_project/settings.py:142
+#: django_project/settings.py:143
 msgid "English"
 msgstr ""
 
-#: django_project/settings.py:143
+#: django_project/settings.py:144
 msgid "Russian"
 msgstr ""
 
-#: templates/_base.html:30 templates/home.html:3
+#: templates/_base.html:30 templates/ask/home.html:3
 msgid "Home"
 msgstr ""
 
@@ -90,12 +90,12 @@ msgstr ""
 msgid "Questions"
 msgstr ""
 
-#: templates/_base.html:32 templates/ask/question_detail.html:35
+#: templates/_base.html:32 templates/ask/question_detail.html:34
 msgid "Answers"
 msgstr ""
 
 #: templates/_base.html:33
-msgid "FAQs"
+msgid "Help"
 msgstr ""
 
 #: templates/_base.html:38 templates/account/logout.html:5
@@ -141,10 +141,14 @@ msgstr ""
 msgid "Dark"
 msgstr ""
 
-#: templates/ask/_question_list.html:6 templates/ask/answer_list.html:18
-#: templates/ask/question_answer.html:10 templates/ask/question_detail.html:17
-#: templates/ask/question_detail.html:42 templates/home.html:12
-#: templates/home.html:31
+#: templates/ask/_csrf_script.html:4
+msgid "Wait, please"
+msgstr ""
+
+#: templates/ask/_question_list.html:6 templates/ask/answer_list.html:16
+#: templates/ask/home.html:17 templates/ask/home.html:36
+#: templates/ask/question_answer.html:9 templates/ask/question_detail.html:16
+#: templates/ask/question_detail.html:41
 msgid "by"
 msgstr ""
 
@@ -152,95 +156,107 @@ msgstr ""
 msgid "New answers"
 msgstr ""
 
-#: templates/ask/_question_list.html:29 templates/home.html:18
-#: templates/home.html:37
+#: templates/ask/_question_list.html:29 templates/ask/home.html:23
+#: templates/ask/home.html:42
 msgid "Details"
 msgstr ""
 
-#: templates/ask/_question_list.html:31 templates/ask/question_answer.html:17
-#: templates/home.html:20 templates/home.html:39
+#: templates/ask/_question_list.html:31 templates/ask/home.html:25
+#: templates/ask/home.html:44 templates/ask/question_answer.html:16
 msgid "Answer"
 msgstr ""
 
-#: templates/ask/answer_list.html:3 templates/ask/answer_list.html:10
-#: templates/ask/answers_to_my_question_list.html:10
+#: templates/ask/answer_list.html:3 templates/ask/answer_list.html:8
+#: templates/ask/answer_to_my_question_list.html:8
 msgid "My Answers"
 msgstr ""
 
-#: templates/ask/answer_list.html:8
-#: templates/ask/answers_to_my_question_list.html:8 templates/ask/faq.html:5
-#: templates/ask/my_question_list.html:8 templates/ask/question_answer.html:7
-#: templates/ask/question_create.html:5 templates/ask/question_detail.html:11
-#: templates/ask/question_list.html:8 templates/home.html:6
+#: templates/ask/answer_list.html:6
+#: templates/ask/answer_to_my_question_list.html:6 templates/ask/help.html:5
+#: templates/ask/home.html:6 templates/ask/my_question_list.html:6
+#: templates/ask/question_create.html:5 templates/ask/question_detail.html:9
+#: templates/ask/question_list.html:6
 msgid "Ask Question"
 msgstr ""
 
-#: templates/ask/answer_list.html:11
-#: templates/ask/answers_to_my_question_list.html:11
+#: templates/ask/answer_list.html:9
+#: templates/ask/answer_to_my_question_list.html:9
 msgid "To My Questions"
 msgstr ""
 
-#: templates/ask/answer_list.html:16 templates/ask/question_answer.html:9
-#: templates/ask/question_detail.html:4 templates/ask/question_detail.html:16
+#: templates/ask/answer_list.html:14 templates/ask/question_answer.html:8
+#: templates/ask/question_detail.html:4 templates/ask/question_detail.html:15
 msgid "Question"
 msgstr ""
 
-#: templates/ask/answer_list.html:35
+#: templates/ask/answer_list.html:33
 msgid "My Answer"
 msgstr ""
 
-#: templates/ask/answers_to_my_question_list.html:3
+#: templates/ask/answer_to_my_question_list.html:3
 msgid "Answers To My Questions"
 msgstr ""
 
-#: templates/ask/faq.html:9
+#: templates/ask/help.html:9
 msgid "Find the answers for the most frequently asked questions below"
 msgstr ""
 
-#: templates/ask/faq.html:14
+#: templates/ask/help.html:14
 msgid "What is it anyway?"
 msgstr ""
 
-#: templates/ask/faq.html:16
+#: templates/ask/help.html:16
 msgid "Ask questions to the universe and answer them. Let's help each other!"
 msgstr ""
 
-#: templates/ask/faq.html:21
+#: templates/ask/help.html:21
 msgid "I want an interface in another language or another color?"
 msgstr ""
 
-#: templates/ask/faq.html:23
+#: templates/ask/help.html:23
 msgid ""
 "<strong><u>Certainly! </u></strong> You can change the settings in the User "
 "Profile"
 msgstr ""
 
-#: templates/ask/faq.html:28
+#: templates/ask/help.html:28
 msgid "Why is my question still not answered?"
 msgstr ""
 
-#: templates/ask/faq.html:30
+#: templates/ask/help.html:30
 msgid ""
 "Perhaps the universe didn't like it very much. A good question is the "
 "foundation of a good answer. Try to wait..."
 msgstr ""
 
-#: templates/ask/faq.html:35
+#: templates/ask/help.html:35
 msgid "Why don't I use the app without answering the question?"
 msgstr ""
 
-#: templates/ask/faq.html:37
+#: templates/ask/help.html:37
 msgid ""
 "It is proposed to obligatorily answer the question of the universe once a "
 "day. Then use as you please."
 msgstr ""
 
-#: templates/ask/my_question_list.html:3 templates/ask/my_question_list.html:11
-#: templates/ask/question_list.html:11
+#: templates/ask/home.html:9
+msgid "Please login or register to use this application to the fullest!"
+msgstr ""
+
+#: templates/ask/home.html:12
+msgid "Last Questions"
+msgstr ""
+
+#: templates/ask/home.html:31
+msgid "Top Questions"
+msgstr ""
+
+#: templates/ask/my_question_list.html:3 templates/ask/my_question_list.html:9
+#: templates/ask/question_list.html:9
 msgid "My Questions"
 msgstr ""
 
-#: templates/ask/my_question_list.html:10 templates/ask/question_list.html:10
+#: templates/ask/my_question_list.html:8 templates/ask/question_list.html:8
 msgid "All Questions"
 msgstr ""
 
@@ -248,7 +264,7 @@ msgstr ""
 msgid "Answer the Question"
 msgstr ""
 
-#: templates/ask/question_answer.html:13
+#: templates/ask/question_answer.html:12
 msgid "Your answer"
 msgstr ""
 
@@ -260,18 +276,10 @@ msgstr ""
 msgid "Create"
 msgstr ""
 
-#: templates/ask/question_detail.html:13
+#: templates/ask/question_detail.html:11
 msgid "Ask AI"
 msgstr ""
 
-#: templates/ask/question_detail.html:37
+#: templates/ask/question_detail.html:36
 msgid "There is no answer to this question yet"
-msgstr ""
-
-#: templates/home.html:7
-msgid "Last Questions"
-msgstr ""
-
-#: templates/home.html:26
-msgid "Top Questions"
 msgstr ""

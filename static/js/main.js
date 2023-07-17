@@ -67,8 +67,7 @@ $( document ).ready(function() {
                     'q_id': q_id,
                 },
                 success: function (response) {
-                    $(".message").text('Wait, please...');
-                    getStatus(response.task_id);
+                    getStatus(response.task_id, 1);
                 },
                 error: function (err) {
                     console.log(err);
@@ -82,7 +81,7 @@ $( document ).ready(function() {
     });
 });
 
-function getStatus(taskID) {
+function getStatus(taskID, dots) {
     $.ajax({
         url: `/ask_ai/${taskID}/`,
         method: 'GET',
@@ -90,12 +89,16 @@ function getStatus(taskID) {
 
             const taskStatus = response.task_status;
 
+            dots = (dots < 5) ? dots + 1 : 1
+
+            $(".message").text(wait_message + '.'.repeat(dots));
+
             if (taskStatus === 'SUCCESS' || taskStatus === 'FAILURE'){
                 location.reload();
                 return false;
             }
             setTimeout(function() {
-                getStatus(response.task_id);
+                getStatus(response.task_id, dots);
             }, 1000);
         },
         error: function (err) {

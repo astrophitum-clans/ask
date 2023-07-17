@@ -4,6 +4,11 @@
 
 {% block content %}
     <a href="{% url 'question_create' %}" class="btn btn-success mb-4">{% trans 'Ask Question' %}</a>
+    {% if not user.is_authenticated %}
+        <div class="alert alert-primary" role="alert">
+            {% trans 'Please login or register to use this application to the fullest!' %}
+        </div>
+    {% endif %}
     <h5 class="text-primary">{% trans 'Last Questions' %}</h5>
     <div class="row mt-4">
         {% for question in last_questions %}
