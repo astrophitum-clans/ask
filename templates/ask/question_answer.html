@@ -4,13 +4,16 @@
 
 {% block title %}{% trans 'Answer the Question' %}{% endblock title %}
 {% block content %}
-<div class="col-md-8 col-lg-6">
+<div class="alert alert-primary" role="alert">
+    {% trans 'Please answer a random question to move on.' %}
+</div>
+<div>
     <h5 class="mb-4 text-primary">{% trans 'Question' %}:</h5>
     <p class="text-body-secondary mb-2"><small>{{ question.created_at }}, {% trans 'by' %} {{ question.author }}</small></p>
-    <p>{{ question.text|linebreaksbr }}</p>
+    <p class="col-md-8 col-lg-6">{{ question.text|linebreaksbr }}</p>
     <hr>
     <h5 class=" text-primary">{% trans 'Your answer' %}:</h5>
-    <form method="post" class="mt-4">
+    <form method="post" class="col-md-8 col-lg-6" class="mt-4">
         {% csrf_token %}
         {{ form|crispy }}
         <button class="btn btn-success mt-2" type="submit">{% trans 'Answer' %}</button>

@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
 from django.http import JsonResponse
 from django.shortcuts import redirect, get_object_or_404
+from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.urls import reverse_lazy
@@ -16,12 +17,12 @@ from celery.result import AsyncResult
 from django_project import settings
 from .models import Question, Answer
 from .tasks import ask_ai_task
-from .utils import LastAnswerCheckMixin
+from .utils import LastAnswerCheckMixin, NewAnswersSumMixin
 
 
 # Create your views here.
 
-class HomePageView(TemplateView):
+class HomePageView(LastAnswerCheckMixin, TemplateView, NewAnswersSumMixin):
     """Home page view"""
     template_name = 'ask/home.html'
 
@@ -33,12 +34,12 @@ class HomePageView(TemplateView):
         return context
 
 
-class HelpPageView(TemplateView):
+class HelpPageView(LastAnswerCheckMixin, TemplateView, NewAnswersSumMixin):
     """Help page view"""
     template_name = 'ask/help.html'
 
 
-class QuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
+class QuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView, NewAnswersSumMixin):
     """Questions list view"""
     model = Question
     context_object_name = 'question_list'
@@ -48,7 +49,7 @@ class QuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
         return Question.objects.all().prefetch_related('author', 'like', 'unlike')
 
 
-class MyQuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView):
+class MyQuestionListView(LoginRequiredMixin, LastAnswerCheckMixin, ListView, NewAnswersSumMixin):
     """Only current user`s questions list view"""
     model = Question
     context_object_name = 'question_list'
@@ -119,7 +120,7 @@ class AnswerToQuestionView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def update_user_last_answer_time(self, user):
-        user.last_answer = datetime.now()
+        user.last_answer = timezone.now()
         user.save()
 
 

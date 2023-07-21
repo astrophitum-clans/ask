@@ -1,7 +1,9 @@
 from datetime import datetime, timedelta
 
+from django.db.models import Sum
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.views.generic.base import ContextMixin
 
 from ask.models import Question
 
@@ -25,11 +27,29 @@ class LastAnswerCheckMixin:
 
         LAST_ANSWER_TIMEDELTA = 24  # hours
 
-        if (not request.user.last_answer  # is None - first time show it
+        if request.user.is_authenticated and (
+                not request.user.last_answer  # is None - first time show it
                 or datetime.now() - request.user.last_answer.replace(tzinfo=None) > timedelta(
-                    hours=LAST_ANSWER_TIMEDELTA)):
+            hours=LAST_ANSWER_TIMEDELTA)
+        ):
             if Question.objects.exclude(author=request.user).exclude(answers__author=request.user).exists():
                 random_question = get_random_question(request.user)
                 return redirect(reverse_lazy('answer_to_question', kwargs={'pk': random_question.id}))
 
         return super().get(request, *args, **kwargs)
+
+
+class NewAnswersSumMixin(ContextMixin):
+    """
+    A mixin class that adds sum of new answers to all the views that use it.
+    """
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        user = self.request.user
+        if user.is_authenticated:
+            ctx['new_answers_sum'] = Question.objects.filter(author=user).aggregate(
+                total=Sum('new_answers_count'))['total']
+        else:
+            ctx['new_answers_sum'] = None
+        return ctx

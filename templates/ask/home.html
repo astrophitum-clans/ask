@@ -9,6 +9,11 @@
             {% trans 'Please login or register to use Ask ME to the fullest!<br> You will be able to answer and ask questions and get answers from artificial intelligence!' %}
         </div>
     {% endif %}
+    {% if new_answers_sum %}
+        <div class="alert alert-primary" role="alert">
+            {% trans 'You have new answers:' %} {{ new_answers_sum }}
+        </div>
+    {% endif %}
     <h5 class="text-primary">{% trans 'Last Questions' %}</h5>
     <div class="row mt-4">
         {% for question in last_questions %}

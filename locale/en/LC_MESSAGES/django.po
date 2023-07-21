@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-17 12:29+0000\n"
+"POT-Creation-Date: 2023-07-21 16:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,8 +146,8 @@ msgid "Dark"
 msgstr ""
 
 #: templates/ask/_question_list.html:6 templates/ask/answer_list.html:16
-#: templates/ask/home.html:17 templates/ask/home.html:36
-#: templates/ask/question_answer.html:9 templates/ask/question_detail.html:16
+#: templates/ask/home.html:22 templates/ask/home.html:41
+#: templates/ask/question_answer.html:12 templates/ask/question_detail.html:16
 #: templates/ask/question_detail.html:41
 msgid "by"
 msgstr ""
@@ -156,13 +156,13 @@ msgstr ""
 msgid "New answers"
 msgstr ""
 
-#: templates/ask/_question_list.html:29 templates/ask/home.html:23
-#: templates/ask/home.html:42
+#: templates/ask/_question_list.html:29 templates/ask/home.html:28
+#: templates/ask/home.html:47
 msgid "Details"
 msgstr ""
 
-#: templates/ask/_question_list.html:31 templates/ask/home.html:25
-#: templates/ask/home.html:44 templates/ask/question_answer.html:16
+#: templates/ask/_question_list.html:31 templates/ask/home.html:30
+#: templates/ask/home.html:49 templates/ask/question_answer.html:19
 msgid "Answer"
 msgstr ""
 
@@ -184,7 +184,7 @@ msgstr ""
 msgid "To My Questions"
 msgstr ""
 
-#: templates/ask/answer_list.html:14 templates/ask/question_answer.html:8
+#: templates/ask/answer_list.html:14 templates/ask/question_answer.html:11
 #: templates/ask/question_detail.html:4 templates/ask/question_detail.html:15
 msgid "Question"
 msgstr ""
@@ -235,40 +235,45 @@ msgid ""
 "foundation of a good answer. Try to wait..."
 msgstr ""
 
-#: templates/ask/help.html:40 templates/ask/help.html:47
+#: templates/ask/help.html:40
 msgid "Why don't I use the app without answering the question?"
 msgstr ""
 
-#: templates/ask/help.html:42 templates/ask/help.html:49
+#: templates/ask/help.html:42
 msgid ""
 "It is proposed to obligatorily answer the question of the universe once a "
 "day. Then use as you please."
 msgstr ""
 
-#: templates/ask/help.html:54
+#: templates/ask/help.html:47
 msgid "How to get an answer from artificial intelligence?"
 msgstr ""
 
-#: templates/ask/help.html:56
+#: templates/ask/help.html:49
 msgid ""
 "Very simple! Ask a question and click the Ask AI button. You can only get "
 "one answer from the AI per question."
 msgstr ""
 
-#: templates/ask/home.html:12
+#: templates/ask/home.html:14 templates/ask/my_question_list.html:9
+#: templates/ask/question_list.html:9
+msgid "You have new answers:"
+msgstr ""
+
+#: templates/ask/home.html:17
 msgid "Last Questions"
 msgstr ""
 
-#: templates/ask/home.html:31
+#: templates/ask/home.html:36
 msgid "Top Questions"
 msgstr ""
 
-#: templates/ask/my_question_list.html:3 templates/ask/my_question_list.html:9
-#: templates/ask/question_list.html:9
+#: templates/ask/my_question_list.html:3 templates/ask/my_question_list.html:14
+#: templates/ask/question_list.html:14
 msgid "My Questions"
 msgstr ""
 
-#: templates/ask/my_question_list.html:8 templates/ask/question_list.html:8
+#: templates/ask/my_question_list.html:13 templates/ask/question_list.html:13
 msgid "All Questions"
 msgstr ""
 
@@ -276,7 +281,11 @@ msgstr ""
 msgid "Answer the Question"
 msgstr ""
 
-#: templates/ask/question_answer.html:12
+#: templates/ask/question_answer.html:8
+msgid "Please answer a random question to move on."
+msgstr ""
+
+#: templates/ask/question_answer.html:15
 msgid "Your answer"
 msgstr ""
 

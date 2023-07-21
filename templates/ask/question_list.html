@@ -4,6 +4,11 @@
 {% block head %}{% include 'ask/_csrf_script.html' %}{% endblock %}
 {% block content %}
     <a href="{% url 'question_create' %}" class="btn btn-success mb-4">{% trans 'Ask Question' %}</a>
+    {% if new_answers_sum %}
+        <div class="alert alert-primary" role="alert">
+            {% trans 'You have new answers:' %} {{ new_answers_sum }}
+        </div>
+    {% endif %}
     <ul class="nav justify-content-left">
         <li><span class="nav-link px-2 text-danger">{% trans 'All Questions' %}</span></li>
         <li><a href="{% url 'my_question_list' %}" class="nav-link px-2 ">{% trans 'My Questions' %}</a></li>
