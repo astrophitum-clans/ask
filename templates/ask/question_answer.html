@@ -4,9 +4,9 @@
 
 {% block title %}{% trans 'Answer the Question' %}{% endblock title %}
 {% block content %}
-<div class="alert alert-primary" role="alert">
-    {% trans 'Please answer a random question to move on.' %}
-</div>
+{#<div class="alert alert-primary" role="alert">#}
+{#    {% trans 'Please answer a random question to move on.' %}#}
+{#</div>#}
 <div>
     <h5 class="mb-4 text-primary">{% trans 'Question' %}:</h5>
     <p class="text-body-secondary mb-2"><small>{{ question.created_at }}, {% trans 'by' %} {{ question.author }}</small></p>
