@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-21 16:13+0000\n"
+"POT-Creation-Date: 2023-08-21 15:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,9 +123,68 @@ msgstr "Войти"
 msgid "Sign Up"
 msgstr "Регистрация"
 
+#: templates/account/login.html:14
+msgid "Forgot password?"
+msgstr "Забыли пароль?"
+
 #: templates/account/logout.html:9
 msgid "Are you sure want to log out?"
 msgstr "Вы уверены, что хотите выйти?"
+
+#: templates/account/password_reset.html:6
+#: templates/account/password_reset.html:10
+#: templates/account/password_reset_done.html:6
+#: templates/account/password_reset_done.html:9
+msgid "Password Reset"
+msgstr ""
+
+#: templates/account/password_reset.html:15
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+
+#: templates/account/password_reset.html:20
+msgid "Reset My Password"
+msgstr ""
+
+#: templates/account/password_reset.html:23
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+
+#: templates/account/password_reset_done.html:15
+msgid ""
+"We have sent you an e-mail. If you have not received it please check your "
+"spam folder. Otherwise contact us if you do not receive it in a few minutes."
+msgstr ""
+"Мы отправили вам email. Если вы не получили его, пожалуйста, проверьте папку со спамом. "
+"В противном случае свяжитесь с нами, если вы не получите его в течение нескольких минут."
+#: templates/account/password_reset_from_key.html:4
+#: templates/account/password_reset_from_key.html:7
+#: templates/account/password_reset_from_key_done.html:4
+#: templates/account/password_reset_from_key_done.html:7
+msgid "Change Password"
+msgstr ""
+
+#: templates/account/password_reset_from_key.html:7
+msgid "Bad Token"
+msgstr ""
+
+#: templates/account/password_reset_from_key.html:11
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+
+#: templates/account/password_reset_from_key.html:16
+msgid "change password"
+msgstr ""
+
+#: templates/account/password_reset_from_key_done.html:8
+msgid "Your password is now changed."
+msgstr ""
 
 #: templates/account/profile.html:4 templates/account/profile.html:7
 msgid "My Profile"
@@ -295,10 +354,6 @@ msgstr "Все Вопросы"
 msgid "Answer the Question"
 msgstr "Задать Вопрос"
 
-#: templates/ask/question_answer.html:8
-msgid "Please answer a random question to move on."
-msgstr "Пожалуйста ответьте на случайный вопрос чтобы двигаться дальше."
-
 #: templates/ask/question_answer.html:15
 msgid "Your answer"
 msgstr "Ваш ответ"
@@ -318,3 +373,6 @@ msgstr "Спросить ИИ"
 #: templates/ask/question_detail.html:36
 msgid "There is no answer to this question yet"
 msgstr "На этот вопрос пока нет ответа"
+
+#~ msgid "Please answer a random question to move on."
+#~ msgstr "Пожалуйста ответьте на случайный вопрос чтобы двигаться дальше."

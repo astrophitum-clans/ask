@@ -58,7 +58,7 @@ INSTALLED_APPS = [
 ]
 
 # django-allauth config
-SITE_ID = 1
+SITE_ID = 2
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -71,6 +71,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -194,6 +195,16 @@ INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
 # openai
 OPENAI_KEY = env('OPENAI_API_KEY', default=None)
 
-# # celery
+# celery
 CELERY_BROKER_URL = env('CELERY_BROKER', default='redis://redis:6379/0')
 CELERY_RESULT_BACKEND = env('CELERY_BACKEND', default='redis://redis:6379/0')
+
+# email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env('ASK_EMAIL_HOST')
+EMAIL_PORT = env('ASK_EMAIL_PORT')
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = env('ASK_EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('ASK_EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = 'message@askmequestion.ru'
+

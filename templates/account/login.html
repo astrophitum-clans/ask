@@ -6,9 +6,10 @@
 
 {% block content %}
     <h3>{% trans 'Log In' %}</h3>
-    <form method="post" class="mt-4">
+    <form method="post" class="mt-4 mb-4">
         {% csrf_token %}
         {{ form|crispy }}
         <button class="btn btn-success mt-2" type="submit">{% trans 'Log In' %}</button>
     </form>
+    <a href="{% url 'account_reset_password' %}" class="text-decoration-none">{% trans 'Forgot password?' %}</a>
 {% endblock content %}
